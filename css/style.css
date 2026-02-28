@@ -701,3 +701,13 @@ html { scroll-behavior: smooth; }
   vertical-align: middle;
   margin-right: 0.3rem;
 }
+
+/* Chat Messages with Avatar */
+.msg { display: flex; gap: 0.8rem; margin-bottom: 0.8rem; padding: 0.8rem 1rem; background: rgba(99, 102, 241, 0.05); border-radius: 12px; border: 1px solid rgba(99, 102, 241, 0.08); }
+.msg-avatar { font-size: 1.5rem; min-width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; background: rgba(99, 102, 241, 0.1); border-radius: 10px; }
+.msg-body { flex: 1; }
+.msg-body .author { color: var(--cyan); font-size: 0.8rem; font-weight: 600; margin-bottom: 0.2rem; }
+.msg-body .text { font-size: 0.88rem; line-height: 1.5; }
+.msg-body .time { font-size: 0.7rem; color: var(--muted); margin-top: 0.3rem; }
+[data-theme="light"] .msg { background: rgba(79, 70, 229, 0.04); border-color: rgba(79, 70, 229, 0.08); }
+[data-theme="light"] .msg-avatar { background: rgba(79, 70, 229, 0.08); }
