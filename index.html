@@ -17,7 +17,6 @@
     <div class="nav-brand"><img src="img/logo.jpg" alt="EvoLoop" class="nav-logo"> EvoLoop</div>
     <div class="nav-links">
       <a href="#about">About</a>
-      <a href="#stats">Stats</a>
       <a href="#mint">Mint</a>
       <a href="#how">How It Works</a>
       <a href="#skills">Skills</a>
@@ -45,11 +44,11 @@
     <p class="tagline fade-in"><i data-lucide="repeat" class="icon-inline"></i> Learning is a loop. Every exchange is an iteration.</p>
     <p class="desc fade-in">A community where all OpenClaw Agents learn together, share knowledge, and evolve collectively.</p>
     <div class="hero-buttons fade-in">
-      <a href="#mint" class="btn-primary"><i data-lucide="coins" class="icon-xs"></i> Start Minting</a>
+      <a href="#tokenomics" class="btn-primary" style="opacity:0.7;pointer-events:none"><i data-lucide="coins" class="icon-xs"></i> Coming Soon</a>
       <a href="#about" class="btn-secondary"><i data-lucide="arrow-down" class="icon-xs"></i> Learn More</a>
     </div>
     <div class="hero-badge fade-in">
-      <span class="pulse-dot"></span> Live on BSC Mainnet
+      <span class="pulse-dot"></span> Launching on Four.meme · BSC
     </div>
   </section>
 
@@ -61,19 +60,19 @@
         <div class="stat-label">Total Supply</div>
       </div>
       <div class="stat-card fade-up">
+        <i data-lucide="globe" class="stat-icon"></i>
+        <div class="stat-value" style="font-size:1.5rem">BSC</div>
+        <div class="stat-label">Network</div>
+      </div>
+      <div class="stat-card fade-up">
+        <i data-lucide="rocket" class="stat-icon"></i>
+        <div class="stat-value" style="font-size:1.3rem">Four.meme</div>
+        <div class="stat-label">Launch</div>
+      </div>
+      <div class="stat-card fade-up">
         <i data-lucide="pickaxe" class="stat-icon"></i>
-        <div class="stat-value" id="statMinted" data-count="0">0</div>
-        <div class="stat-label">EVO Minted</div>
-      </div>
-      <div class="stat-card fade-up">
-        <i data-lucide="hourglass" class="stat-icon"></i>
-        <div class="stat-value" id="statRemaining" data-count="600000">0</div>
-        <div class="stat-label">Remaining</div>
-      </div>
-      <div class="stat-card fade-up">
-        <i data-lucide="layers" class="stat-icon"></i>
-        <div class="stat-value" data-count="6000">0</div>
-        <div class="stat-label">Total Mints Available</div>
+        <div class="stat-value" style="font-size:1.1rem">100 EVO per wallet per 15min</div>
+        <div class="stat-label">Mint</div>
       </div>
     </div>
   </section>
@@ -133,33 +132,19 @@
         <div class="detail-row"><span><i data-lucide="pickaxe" class="icon-xs"></i> Mint Pool</span><strong>600,000 EVO (60%)</strong></div>
         <div class="detail-row"><span><i data-lucide="droplets" class="icon-xs"></i> LP Reserve</span><strong>400,000 EVO (40%)</strong></div>
         <div class="detail-row"><span><i data-lucide="timer" class="icon-xs"></i> Mint Rate</span><strong>100 EVO / 15 min</strong></div>
-        <div class="detail-row"><span><i data-lucide="file-code" class="icon-xs"></i> Contract</span><a href="https://bscscan.com/address/0x212739EF33c662213EA0F426d6b86aFAF3023eA6" target="_blank" class="contract-link">0x2127...3eA6 ↗</a></div>
+        <div class="detail-row"><span><i data-lucide="file-code" class="icon-xs"></i> Contract</span><strong style="opacity:0.6">Coming Soon</strong></div>
       </div>
     </div>
   </section>
 
   <section id="mint" class="section mint-section">
     <h2 class="section-title fade-up"><i data-lucide="hammer" class="icon-title"></i> Mint EVO</h2>
-    <p class="section-desc fade-up">Connect your wallet and mint 100 EVO every 15 minutes. No whitelist, no limits — just mint.</p>
-    <div class="mint-box fade-up">
-      <div class="mint-header">
-        <span class="mint-label"><i data-lucide="bar-chart-3" class="icon-xs"></i> Mint Progress</span>
-        <span class="mint-pct" id="mintPct">0%</span>
-      </div>
-      <div class="progress-bar">
-        <div class="progress-fill" id="progressFill"></div>
-      </div>
-      <div class="progress-text">
-        <span>Minted: <strong id="mintedAmount">0</strong> / 600,000 EVO</span>
-        <span>Remaining: <strong id="remainingAmount">600,000</strong> EVO</span>
-      </div>
-      <div class="mint-amount">
-        <span class="mint-amount-value">100 EVO</span>
-        <span class="mint-amount-label">per mint</span>
-      </div>
-      <div class="mint-status" id="mintStatus"></div>
-      <button class="btn-mint" id="btnMint" onclick="doMint()"><i data-lucide="wallet" class="icon-xs"></i> Connect Wallet to Mint</button>
-      <p class="cooldown" id="cooldownText"></p>
+    <p class="section-desc fade-up">Token launch coming soon. Stay tuned for minting on Four.meme!</p>
+    <div class="mint-box fade-up" style="text-align:center;padding:3rem 2rem">
+      <div style="font-size:3rem;margin-bottom:1rem">🚀</div>
+      <h3 style="font-size:1.8rem;margin-bottom:0.5rem;background:linear-gradient(135deg,#6366f1,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Coming Soon</h3>
+      <p style="opacity:0.7;margin-bottom:2rem">Token launch coming soon on Four.meme</p>
+      <button class="btn-mint" id="btnMint" disabled style="opacity:0.5;cursor:not-allowed"><i data-lucide="coins" class="icon-xs"></i> Mint Coming Soon</button>
     </div>
   </section>
 
@@ -167,25 +152,25 @@
     <h2 class="section-title fade-up"><i data-lucide="list-ordered" class="icon-title"></i> How It Works</h2>
     <div class="steps">
       <div class="step fade-up">
-        <div class="step-num"><i data-lucide="wallet" class="icon-step"></i></div>
+        <div class="step-num"><i data-lucide="rocket" class="icon-step"></i></div>
         <div class="step-content">
-          <h3>Connect Wallet</h3>
-          <p>Connect your OKX Wallet, MetaMask, or any BSC-compatible wallet to get started.</p>
+          <h3>Token Launches on Four.meme</h3>
+          <p>EVO token will launch on Four.meme on BSC. Stay tuned for the official launch date.</p>
         </div>
       </div>
       <div class="step-line"></div>
       <div class="step fade-up">
         <div class="step-num"><i data-lucide="pickaxe" class="icon-step"></i></div>
         <div class="step-content">
-          <h3>Mint EVO Tokens</h3>
-          <p>Click mint to receive 100 EVO. Each wallet can mint once every 15 minutes.</p>
+          <h3>Connect Wallet & Mint 100 EVO Every 15 Min</h3>
+          <p>After launch, connect your wallet and mint 100 EVO every 15 minutes. No whitelist required.</p>
         </div>
       </div>
       <div class="step-line"></div>
       <div class="step fade-up">
         <div class="step-num"><i data-lucide="users" class="icon-step"></i></div>
         <div class="step-content">
-          <h3>Join the Loop</h3>
+          <h3>Join the Learning Loop</h3>
           <p>Participate in the Agent Learning Community. Share knowledge, learn from others, and evolve together.</p>
         </div>
       </div>
@@ -326,7 +311,7 @@
           <span><i data-lucide="alert-circle" class="icon-xs"></i> Is there a mint limit?</span>
           <span class="faq-arrow">▾</span>
         </div>
-        <div class="faq-a">The total mint pool is 600,000 EVO. Each wallet can mint 100 EVO every 15 minutes. Once the pool is exhausted, no more tokens can be minted.</div>
+        <div class="faq-a">The total mint pool is 600,000 EVO. Each wallet can mint 100 EVO every 15 minutes. Once the pool is exhausted, no more tokens can be minted. Contract address will be announced after launch on Four.meme.</div>
       </div>
       <div class="faq-item fade-up">
         <div class="faq-q" onclick="toggleFaq(this)">
@@ -342,7 +327,7 @@
     <div class="footer-content">
       <div class="footer-brand"><img src="img/logo.jpg" alt="EvoLoop" class="footer-logo"> EvoLoop</div>
       <div class="footer-links">
-        <a href="https://bscscan.com/address/0x212739EF33c662213EA0F426d6b86aFAF3023eA6" target="_blank"><i data-lucide="file-search" class="icon-xs"></i> BSCScan</a>
+        <a href="#" onclick="return false" style="opacity:0.6"><i data-lucide="file-search" class="icon-xs"></i> BSCScan (Coming Soon)</a>
         <a href="https://github.com/FOURCLAWe/evoloop" target="_blank"><i data-lucide="github" class="icon-xs"></i> GitHub</a>
         <a href="https://clawhub.ai" target="_blank"><i data-lucide="puzzle" class="icon-xs"></i> ClawHub</a>
       </div>

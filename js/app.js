@@ -1,15 +1,6 @@
-const CONTRACT = '0x212739EF33c662213EA0F426d6b86aFAF3023eA6';
 const BSC_CHAIN_ID = '0x38';
-const ABI = [
-  'function mint() external',
-  'function mintProgress() view returns (uint256 minted, uint256 pool, uint256 remaining)',
-  'function cooldownRemaining(address) view returns (uint256)',
-  'function totalMinted() view returns (uint256)',
-  'function balanceOf(address) view returns (uint256)',
-  'event Minted(address indexed to, uint256 amount, uint256 totalMinted)'
-];
 
-let provider, signer, contract, userAddr;
+let provider, signer, userAddr;
 
 // --- Particles ---
 function initParticles() {
@@ -37,7 +28,6 @@ function initParticles() {
       if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
       ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
     });
-    // Draw lines
     ctx.strokeStyle = window._particleLine || 'rgba(99, 102, 241, 0.06)';
     ctx.lineWidth = 0.5;
     for (let i = 0; i < particles.length; i++) {
@@ -132,96 +122,21 @@ async function connectWallet() {
     provider = new ethers.BrowserProvider(walletProvider);
     signer = await provider.getSigner();
     userAddr = await signer.getAddress();
-    contract = new ethers.Contract(CONTRACT, ABI, signer);
 
     const short = userAddr.slice(0, 6) + '...' + userAddr.slice(-4);
     document.getElementById('btnWallet').textContent = short;
     document.getElementById('btnWallet').classList.add('connected');
-    document.getElementById('btnMint').textContent = 'Mint 100 EVO';
     document.getElementById('chatInput').disabled = false;
     document.getElementById('btnSend').disabled = false;
-
-    await refreshProgress();
-    await refreshCooldown();
   } catch (e) {
     console.error(e);
     alert('Connection failed: ' + e.message);
   }
 }
 
-// --- Mint ---
+// --- Mint (Coming Soon) ---
 async function doMint() {
-  if (!contract) { await connectWallet(); return; }
-  const btn = document.getElementById('btnMint');
-  btn.disabled = true;
-  btn.textContent = 'Minting...';
-  try {
-    const tx = await contract.mint();
-    document.getElementById('mintStatus').innerHTML =
-      '⏳ Tx submitted: <a href="https://bscscan.com/tx/' + tx.hash +
-      '" target="_blank" style="color:var(--accent)">' + tx.hash.slice(0,10) + '...</a>';
-    await tx.wait();
-    document.getElementById('mintStatus').textContent = '✅ Mint successful!';
-    await refreshProgress();
-    await refreshCooldown();
-  } catch (e) {
-    console.error(e);
-    const msg = e.reason || e.message || 'Mint failed';
-    document.getElementById('mintStatus').textContent = '❌ ' + msg;
-  }
-  btn.disabled = false;
-  btn.textContent = 'Mint 100 EVO';
-}
-
-async function refreshProgress() {
-  try {
-    const rpc = provider || new ethers.JsonRpcProvider('https://bsc-dataseed1.binance.org');
-    const readContract = new ethers.Contract(CONTRACT, ABI, rpc);
-    const [minted, , remaining] = await readContract.mintProgress();
-    const mintedNum = Number(ethers.formatEther(minted));
-    const remainNum = Number(ethers.formatEther(remaining));
-    const pct = (mintedNum / 600000 * 100).toFixed(2);
-
-    document.getElementById('mintedAmount').textContent = mintedNum.toLocaleString();
-    document.getElementById('remainingAmount').textContent = remainNum.toLocaleString();
-    document.getElementById('progressFill').style.width = pct + '%';
-    document.getElementById('mintPct').textContent = pct + '%';
-
-    // Update stats
-    const statMinted = document.getElementById('statMinted');
-    const statRemaining = document.getElementById('statRemaining');
-    if (statMinted) { statMinted.dataset.count = mintedNum; statMinted.textContent = mintedNum.toLocaleString(); }
-    if (statRemaining) { statRemaining.dataset.count = remainNum; statRemaining.textContent = remainNum.toLocaleString(); }
-  } catch (e) { console.error('Progress error:', e); }
-}
-
-async function refreshCooldown() {
-  if (!contract || !userAddr) return;
-  try {
-    const cd = await contract.cooldownRemaining(userAddr);
-    const sec = Number(cd);
-    if (sec > 0) {
-      startCooldownTimer(sec);
-    } else {
-      document.getElementById('cooldownText').textContent = '✅ Ready to Mint';
-    }
-  } catch (e) { console.error(e); }
-}
-
-let cdInterval;
-function startCooldownTimer(seconds) {
-  clearInterval(cdInterval);
-  let left = seconds;
-  const el = document.getElementById('cooldownText');
-  const tick = () => {
-    if (left <= 0) { el.textContent = '✅ Ready to Mint'; clearInterval(cdInterval); return; }
-    const m = Math.floor(left / 60);
-    const s = left % 60;
-    el.textContent = '⏱ Cooldown: ' + m + 'm ' + s + 's';
-    left--;
-  };
-  tick();
-  cdInterval = setInterval(tick, 1000);
+  alert('Token not launched yet. Stay tuned!');
 }
 
 // --- Community Chat ---
@@ -270,8 +185,6 @@ document.getElementById('chatInput')?.addEventListener('keydown', e => {
   initParticles();
   initScrollAnimations();
   initCountUp();
-  provider = new ethers.JsonRpcProvider('https://bsc-dataseed1.binance.org');
-  await refreshProgress();
 })();
 
 // --- Mouse Glow ---
@@ -342,8 +255,6 @@ function updateThemeIcon(theme) {
 }
 
 function updateParticleColors(theme) {
-  // Particles will pick up CSS vars on next frame automatically
-  // but we store for the draw loop
   window._particleColor = theme === 'light' ? 'rgba(79, 70, 229, 0.4)' : 'rgba(99, 102, 241, 0.5)';
   window._particleLine = theme === 'light' ? 'rgba(79, 70, 229, 0.08)' : 'rgba(99, 102, 241, 0.06)';
 }
