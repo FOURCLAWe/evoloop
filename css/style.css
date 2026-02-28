@@ -363,3 +363,96 @@ footer {
   .stat-value { font-size: 1.3rem; }
   .progress-text { flex-direction: column; gap: 0.3rem; }
 }
+
+/* Mouse Glow */
+.mouse-glow {
+  position: fixed;
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.3s;
+}
+
+/* Card Tilt Glow */
+.card { position: relative; overflow: hidden; }
+.card::before {
+  content: '';
+  position: absolute;
+  top: var(--mouse-y, 50%);
+  left: var(--mouse-x, 50%);
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.card:hover::before { opacity: 1; }
+
+/* Button Ripple */
+.btn-mint, .btn-primary { position: relative; overflow: hidden; }
+.ripple {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transform: scale(0);
+  animation: rippleAnim 0.6s ease-out;
+  pointer-events: none;
+}
+@keyframes rippleAnim { to { transform: scale(4); opacity: 0; } }
+
+/* Stat Card Hover Glow */
+.stat-card { position: relative; overflow: hidden; }
+.stat-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(34, 211, 238, 0.05) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.stat-card:hover::after { opacity: 1; }
+
+/* Step Hover */
+.step { transition: transform 0.2s; }
+.step:hover { transform: translateX(8px); }
+
+/* FAQ Hover Glow */
+.faq-q { transition: color 0.2s; }
+.faq-item:hover .faq-q { color: var(--accent); }
+
+/* Mint Box Glow on Hover */
+.mint-box { transition: border-color 0.3s, box-shadow 0.3s; }
+.mint-box:hover { border-color: rgba(34, 211, 238, 0.3); box-shadow: 0 0 40px rgba(34, 211, 238, 0.08); }
+
+/* Nav Link Underline */
+.nav-links a { position: relative; }
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 2px;
+  background: var(--accent);
+  transition: width 0.3s;
+}
+.nav-links a:hover::after { width: 100%; }
+
+/* Hero Title Shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+.hero-title:hover .gradient-text {
+  background: linear-gradient(90deg, var(--accent), var(--green), var(--accent));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 2s linear infinite;
+}
+
+/* Smooth scroll */
+html { scroll-behavior: smooth; }

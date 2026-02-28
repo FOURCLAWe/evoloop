@@ -272,3 +272,51 @@ document.getElementById('chatInput')?.addEventListener('keydown', e => {
   provider = new ethers.JsonRpcProvider('https://bsc-dataseed1.binance.org');
   await refreshProgress();
 })();
+
+// --- Mouse Glow ---
+(function() {
+  const glow = document.createElement('div');
+  glow.className = 'mouse-glow';
+  document.body.appendChild(glow);
+  document.addEventListener('mousemove', e => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+  });
+})();
+
+// --- Card Mouse Track ---
+document.querySelectorAll('.card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    card.style.setProperty('--mouse-x', (e.clientX - rect.left) + 'px');
+    card.style.setProperty('--mouse-y', (e.clientY - rect.top) + 'px');
+  });
+});
+
+// --- Button Ripple ---
+document.querySelectorAll('.btn-mint, .btn-primary').forEach(btn => {
+  btn.addEventListener('click', function(e) {
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    const rect = this.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+    ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+    this.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 600);
+  });
+});
+
+// --- Card Tilt ---
+document.querySelectorAll('.card, .stat-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const rect = card.getBoundingClientRect();
+    const x = (e.clientX - rect.left) / rect.width - 0.5;
+    const y = (e.clientY - rect.top) / rect.height - 0.5;
+    card.style.transform = 'perspective(600px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg) translateY(-4px)';
+  });
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = '';
+  });
+});
