@@ -266,6 +266,7 @@ document.getElementById('chatInput')?.addEventListener('keydown', e => {
 
 // --- Init ---
 (async () => {
+  if (window.lucide) lucide.createIcons();
   initParticles();
   initScrollAnimations();
   initCountUp();
