@@ -12,16 +12,26 @@ const ABI = [
 let provider, signer, contract, userAddr;
 
 // --- Wallet ---
+function getWalletProvider() {
+  // OKX Wallet
+  if (window.okxwallet) return window.okxwallet;
+  // MetaMask / other injected
+  if (window.ethereum) return window.ethereum;
+  return null;
+}
+
 async function connectWallet() {
-  if (!window.ethereum) { alert('请安装 MetaMask'); return; }
+  const walletProvider = getWalletProvider();
+  if (!walletProvider) { alert('请安装 OKX 钱包或 MetaMask'); return; }
   try {
-    const chainId = await window.ethereum.request({ method: 'eth_chainId' });
+    await walletProvider.request({ method: 'eth_requestAccounts' });
+    const chainId = await walletProvider.request({ method: 'eth_chainId' });
     if (chainId !== BSC_CHAIN_ID) {
-      await window.ethereum.request({
+      await walletProvider.request({
         method: 'wallet_switchEthereumChain',
         params: [{ chainId: BSC_CHAIN_ID }]
       }).catch(async () => {
-        await window.ethereum.request({
+        await walletProvider.request({
           method: 'wallet_addEthereumChain',
           params: [{
             chainId: BSC_CHAIN_ID, chainName: 'BNB Smart Chain',
@@ -32,7 +42,7 @@ async function connectWallet() {
         });
       });
     }
-    provider = new ethers.BrowserProvider(window.ethereum);
+    provider = new ethers.BrowserProvider(walletProvider);
     signer = await provider.getSigner();
     userAddr = await signer.getAddress();
     contract = new ethers.Contract(CONTRACT, ABI, signer);
