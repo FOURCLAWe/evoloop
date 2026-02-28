@@ -16,7 +16,58 @@
   --border: rgba(99, 102, 241, 0.15);
   --glow: rgba(99, 102, 241, 0.2);
   --glow-cyan: rgba(34, 211, 238, 0.15);
+  --particle-color: 99, 102, 241;
+  --particle-line: 0.06;
 }
+
+[data-theme="light"] {
+  --bg: #f8fafc;
+  --bg2: #f1f5f9;
+  --bg3: #e2e8f0;
+  --card: rgba(255, 255, 255, 0.8);
+  --accent: #4f46e5;
+  --accent2: #6366f1;
+  --cyan: #0891b2;
+  --green: #059669;
+  --pink: #db2777;
+  --amber: #d97706;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: rgba(79, 70, 229, 0.12);
+  --glow: rgba(79, 70, 229, 0.1);
+  --glow-cyan: rgba(8, 145, 178, 0.1);
+  --particle-color: 79, 70, 229;
+  --particle-line: 0.08;
+}
+
+[data-theme="light"] body::before {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(79, 70, 229, 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(8, 145, 178, 0.04) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 80%, rgba(219, 39, 119, 0.03) 0%, transparent 50%);
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(241, 245, 249, 0.85);
+  border-bottom-color: rgba(79, 70, 229, 0.1);
+}
+
+[data-theme="light"] .hero-glow {
+  background: radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, rgba(8, 145, 178, 0.03) 40%, transparent 70%);
+}
+
+[data-theme="light"] .gradient-text {
+  background: linear-gradient(135deg, var(--accent), var(--cyan), var(--green));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .progress-bar { background: var(--bg3); }
+[data-theme="light"] .msg { background: rgba(241, 245, 249, 0.8); border-color: rgba(79, 70, 229, 0.08); }
+[data-theme="light"] .chat-input-area input { background: rgba(241, 245, 249, 0.5); }
+[data-theme="light"] .donut-chart svg { filter: drop-shadow(0 0 15px rgba(79, 70, 229, 0.15)); }
+[data-theme="light"] .float-icon { opacity: 0.08; }
+[data-theme="light"] .section-title { background: linear-gradient(135deg, var(--text), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -619,3 +670,18 @@ html { scroll-behavior: smooth; }
   font-size: 0.75rem;
 }
 .skills-cta { text-align: center; margin-top: 1rem; }
+
+/* Theme Toggle */
+.nav-actions { display: flex; align-items: center; gap: 0.8rem; }
+.btn-theme {
+  width: 38px; height: 38px;
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 10px;
+  color: var(--accent2);
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .2s;
+}
+.btn-theme:hover { background: rgba(99, 102, 241, 0.2); border-color: var(--accent); transform: rotate(15deg); }
+[data-theme="light"] .btn-theme { background: rgba(79, 70, 229, 0.08); border-color: rgba(79, 70, 229, 0.15); }

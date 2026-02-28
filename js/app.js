@@ -30,7 +30,7 @@ function initParticles() {
 
   function draw() {
     ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = 'rgba(99, 102, 241, 0.5)';
+    ctx.fillStyle = window._particleColor || 'rgba(99, 102, 241, 0.5)';
     particles.forEach(p => {
       p.x += p.vx; p.y += p.vy;
       if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
@@ -38,7 +38,7 @@ function initParticles() {
       ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
     });
     // Draw lines
-    ctx.strokeStyle = 'rgba(99, 102, 241, 0.06)';
+    ctx.strokeStyle = window._particleLine || 'rgba(99, 102, 241, 0.06)';
     ctx.lineWidth = 0.5;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
@@ -321,3 +321,39 @@ document.querySelectorAll('.card, .stat-card').forEach(card => {
     card.style.transform = '';
   });
 });
+
+// --- Theme Toggle ---
+function toggleTheme() {
+  const html = document.documentElement;
+  const current = html.getAttribute('data-theme');
+  const next = current === 'light' ? 'dark' : 'light';
+  html.setAttribute('data-theme', next);
+  localStorage.setItem('evoloop-theme', next);
+  updateThemeIcon(next);
+  updateParticleColors(next);
+}
+
+function updateThemeIcon(theme) {
+  const icon = document.getElementById('themeIcon');
+  if (icon) {
+    icon.setAttribute('data-lucide', theme === 'light' ? 'moon' : 'sun');
+    if (window.lucide) lucide.createIcons();
+  }
+}
+
+function updateParticleColors(theme) {
+  // Particles will pick up CSS vars on next frame automatically
+  // but we store for the draw loop
+  window._particleColor = theme === 'light' ? 'rgba(79, 70, 229, 0.4)' : 'rgba(99, 102, 241, 0.5)';
+  window._particleLine = theme === 'light' ? 'rgba(79, 70, 229, 0.08)' : 'rgba(99, 102, 241, 0.06)';
+}
+
+// Init theme from localStorage
+(function() {
+  const saved = localStorage.getItem('evoloop-theme');
+  if (saved) {
+    document.documentElement.setAttribute('data-theme', saved);
+    updateThemeIcon(saved);
+    updateParticleColors(saved);
+  }
+})();
