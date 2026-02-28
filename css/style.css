@@ -685,3 +685,19 @@ html { scroll-behavior: smooth; }
 }
 .btn-theme:hover { background: rgba(99, 102, 241, 0.2); border-color: var(--accent); transform: rotate(15deg); }
 [data-theme="light"] .btn-theme { background: rgba(79, 70, 229, 0.08); border-color: rgba(79, 70, 229, 0.15); }
+
+/* Logo */
+.nav-logo {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 0.3rem;
+}
+.footer-logo {
+  width: 28px; height: 28px;
+  border-radius: 6px;
+  object-fit: cover;
+  vertical-align: middle;
+  margin-right: 0.3rem;
+}
