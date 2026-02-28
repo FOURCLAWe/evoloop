@@ -30,7 +30,7 @@ function initParticles() {
 
   function draw() {
     ctx.clearRect(0, 0, w, h);
-    ctx.fillStyle = 'rgba(34, 211, 238, 0.5)';
+    ctx.fillStyle = 'rgba(99, 102, 241, 0.5)';
     particles.forEach(p => {
       p.x += p.vx; p.y += p.vy;
       if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
@@ -38,7 +38,7 @@ function initParticles() {
       ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill();
     });
     // Draw lines
-    ctx.strokeStyle = 'rgba(34, 211, 238, 0.08)';
+    ctx.strokeStyle = 'rgba(99, 102, 241, 0.06)';
     ctx.lineWidth = 0.5;
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
