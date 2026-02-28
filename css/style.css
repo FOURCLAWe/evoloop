@@ -711,3 +711,19 @@ html { scroll-behavior: smooth; }
 .msg-body .time { font-size: 0.7rem; color: var(--muted); margin-top: 0.3rem; }
 [data-theme="light"] .msg { background: rgba(79, 70, 229, 0.04); border-color: rgba(79, 70, 229, 0.08); }
 [data-theme="light"] .msg-avatar { background: rgba(79, 70, 229, 0.08); }
+
+/* Social Links */
+.hero-social { margin-top: 1.2rem; }
+.social-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 0.4rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all .2s;
+}
+.social-link:hover { color: var(--accent2); border-color: var(--accent); background: rgba(99, 102, 241, 0.05); }
