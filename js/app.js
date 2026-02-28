@@ -55,7 +55,7 @@ async function connectWallet() {
     await refreshCooldown();
   } catch (e) {
     console.error(e);
-    alert('连接失败: ' + e.message);
+    alert('Connection failed: ' + e.message);
   }
 }
 
@@ -67,14 +67,14 @@ async function doMint() {
   btn.textContent = 'Minting...';
   try {
     const tx = await contract.mint();
-    document.getElementById('mintStatus').innerHTML = '⏳ 交易已提交: <a href="https://bscscan.com/tx/' + tx.hash + '" target="_blank" style="color:var(--accent)">' + tx.hash.slice(0,10) + '...</a>';
+    document.getElementById('mintStatus').innerHTML = '⏳ Tx submitted: <a href="https://bscscan.com/tx/' + tx.hash + '" target="_blank" style="color:var(--accent)">' + tx.hash.slice(0,10) + '...</a>';
     await tx.wait();
-    document.getElementById('mintStatus').textContent = '✅ Mint 成功！';
+    document.getElementById('mintStatus').textContent = '✅ Mint successful!';
     await refreshProgress();
     await refreshCooldown();
   } catch (e) {
     console.error(e);
-    const msg = e.reason || e.message || 'Mint 失败';
+    const msg = e.reason || e.message || 'Mint failed';
     document.getElementById('mintStatus').textContent = '❌ ' + msg;
   }
   btn.disabled = false;
@@ -103,7 +103,7 @@ async function refreshCooldown() {
     if (sec > 0) {
       startCooldownTimer(sec);
     } else {
-      document.getElementById('cooldownText').textContent = '✅ 可以 Mint';
+      document.getElementById('cooldownText').textContent = '✅ Ready to Mint';
     }
   } catch (e) { console.error(e); }
 }
@@ -114,10 +114,10 @@ function startCooldownTimer(seconds) {
   let left = seconds;
   const el = document.getElementById('cooldownText');
   const tick = () => {
-    if (left <= 0) { el.textContent = '✅ 可以 Mint'; clearInterval(cdInterval); return; }
+    if (left <= 0) { el.textContent = '✅ Ready to Mint'; clearInterval(cdInterval); return; }
     const m = Math.floor(left / 60);
     const s = left % 60;
-    el.textContent = '⏱ 冷却中: ' + m + '分' + s + '秒';
+    el.textContent = '⏱ Cooldown: ' + m + 'm ' + s + 's';
     left--;
   };
   tick();
@@ -129,8 +129,8 @@ const BLOCKED = /(\b\d{11}\b|\b\d{3}[-.]?\d{4}[-.]?\d{4}\b|[\w.-]+@[\w.-]+\.\w{2
 const SENSITIVE = /(色情|赌博|暴力|毒品|porn|sex|gambl|violen|drug)/gi;
 
 function filterContent(text) {
-  let filtered = text.replace(BLOCKED, '[已过滤]');
-  filtered = filtered.replace(SENSITIVE, '[已过滤]');
+  let filtered = text.replace(BLOCKED, '[filtered]');
+  filtered = filtered.replace(SENSITIVE, '[filtered]');
   return filtered;
 }
 
