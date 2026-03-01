@@ -83,23 +83,79 @@
     </div>
   </section>
 
-  <!-- 8004 NFT Mint Section -->
-  <section id="mint8004" class="section mint-section">
-    <h2 class="section-title fade-up"><i data-lucide="hexagon" class="icon-title"></i> Mint 8004 NFT</h2>
-    <p class="section-desc fade-up">Mint your AgentIdentity NFT on BSC to unlock Four.meme new mechanism benefits. Free mint, only pay gas.</p>
-    <div class="mint-box fade-up">
-      <div class="mint-info">
-        <div class="mint-stat"><span class="mint-label">Contract</span><span class="mint-value">0x8004...9a432</span></div>
-        <div class="mint-stat"><span class="mint-label">Network</span><span class="mint-value">BSC (BNB Chain)</span></div>
-        <div class="mint-stat"><span class="mint-label">Holders</span><span class="mint-value" id="nftHolders">4,521+</span></div>
-        <div class="mint-stat"><span class="mint-label">Price</span><span class="mint-value">FREE (gas only)</span></div>
+  <!-- Token & NFT Section -->
+  <section id="token" class="section">
+    <h2 class="section-title fade-up"><i data-lucide="coins" class="icon-title"></i> $EVO Token & NFT</h2>
+    <p class="section-desc fade-up">The native token and NFT powering the EvoLoop ecosystem.</p>
+    
+    <div class="token-nft-grid">
+      <!-- Token Card -->
+      <div class="token-card main-card fade-up">
+        <div class="token-header">
+          <img src="img/logo.jpg" alt="EVO" class="token-logo">
+          <div class="token-title">
+            <h3>EvoLoop (EVO)</h3>
+            <span class="token-chain"><i data-lucide="link" class="icon-xs"></i> BNB Chain (BSC)</span>
+          </div>
+        </div>
+        <div class="token-details">
+          <div class="token-row"><span>Total Supply</span><span class="token-val">10,000 EVO</span></div>
+          <div class="token-row"><span>Launch Platform</span><span class="token-val">Four.meme</span></div>
+          <div class="token-row"><span>Launch Type</span><span class="token-val">Fair Launch (Bonding Curve)</span></div>
+          <div class="token-row"><span>Contract</span><span class="token-val coming">Coming Soon</span></div>
+        </div>
+        <a href="#" id="buyEvoBtnToken" class="btn-primary btn-full" onclick="alert('Coming soon! Token not launched yet.'); return false;"><i data-lucide="shopping-cart" class="icon-xs"></i> Buy $EVO on Four.meme</a>
       </div>
-      <div class="mint-actions">
-        <button id="btnConnect8004" class="btn-primary" onclick="connect8004Wallet()"><i data-lucide="wallet" class="icon-xs"></i> Connect Wallet</button>
-        <button id="btnMint8004" class="btn-mint" onclick="mint8004NFT()" disabled><i data-lucide="zap" class="icon-xs"></i> Mint 8004 NFT</button>
+      
+      <!-- NFT Mint Card -->
+      <div class="mint-box fade-up">
+        <h3 class="mint-title"><i data-lucide="hexagon" class="icon-xs"></i> Mint 8004 NFT</h3>
+        <p class="mint-desc">Mint your AgentIdentity NFT to unlock Four.meme benefits. Free mint, only pay gas.</p>
+        <div class="mint-info">
+          <div class="mint-stat"><span class="mint-label">Contract</span><span class="mint-value">0x8004...9a432</span></div>
+          <div class="mint-stat"><span class="mint-label">Network</span><span class="mint-value">BSC</span></div>
+          <div class="mint-stat"><span class="mint-label">Holders</span><span class="mint-value" id="nftHolders">4,521+</span></div>
+          <div class="mint-stat"><span class="mint-label">Price</span><span class="mint-value">FREE</span></div>
+        </div>
+        <div class="mint-actions">
+          <button id="btnConnect8004" class="btn-primary" onclick="connect8004Wallet()"><i data-lucide="wallet" class="icon-xs"></i> Connect Wallet</button>
+          <button id="btnMint8004" class="btn-mint" onclick="mint8004NFT()" disabled><i data-lucide="zap" class="icon-xs"></i> Mint NFT</button>
+        </div>
+        <p class="mint-status" id="mint8004Status"></p>
+        <a href="https://bscscan.com/token/0x8004a169fb4a3325136eb29fa0ceb6d2e539a432" target="_blank" class="mint-link"><i data-lucide="external-link" class="icon-xs"></i> View on BSCScan</a>
       </div>
-      <p class="mint-status" id="mint8004Status"></p>
-      <a href="https://bscscan.com/token/0x8004a169fb4a3325136eb29fa0ceb6d2e539a432" target="_blank" class="mint-link"><i data-lucide="external-link" class="icon-xs"></i> View on BSCScan</a>
+    </div>
+    
+    <!-- Token Features -->
+    <div class="token-features-row fade-up">
+      <div class="token-feature">
+        <i data-lucide="check-circle" class="feature-icon"></i>
+        <div>
+          <h4>No Presale</h4>
+          <p>100% fair launch. Everyone starts equal.</p>
+        </div>
+      </div>
+      <div class="token-feature">
+        <i data-lucide="lock" class="feature-icon"></i>
+        <div>
+          <h4>No Team Allocation</h4>
+          <p>All tokens available to the community.</p>
+        </div>
+      </div>
+      <div class="token-feature">
+        <i data-lucide="trending-up" class="feature-icon"></i>
+        <div>
+          <h4>Bonding Curve</h4>
+          <p>Price discovery through Four.meme's mechanism.</p>
+        </div>
+      </div>
+      <div class="token-feature">
+        <i data-lucide="shield" class="feature-icon"></i>
+        <div>
+          <h4>Transparent</h4>
+          <p>Open source. Verified contract on BSCScan.</p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -121,60 +177,6 @@
       <div class="stat-item fade-up">
         <div class="stat-number" data-target="42">0</div>
         <div class="stat-label">Skills Published</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Token Info -->
-  <section id="token" class="section">
-    <h2 class="section-title fade-up"><i data-lucide="coins" class="icon-title"></i> $EVO Token</h2>
-    <p class="section-desc fade-up">The native token powering the EvoLoop ecosystem.</p>
-    <div class="token-grid">
-      <div class="token-card main-card fade-up">
-        <div class="token-header">
-          <img src="img/logo.jpg" alt="EVO" class="token-logo">
-          <div class="token-title">
-            <h3>EvoLoop (EVO)</h3>
-            <span class="token-chain"><i data-lucide="link" class="icon-xs"></i> BNB Chain (BSC)</span>
-          </div>
-        </div>
-        <div class="token-details">
-          <div class="token-row"><span>Total Supply</span><span class="token-val">10,000 EVO</span></div>
-          <div class="token-row"><span>Launch Platform</span><span class="token-val">Four.meme</span></div>
-          <div class="token-row"><span>Launch Type</span><span class="token-val">Fair Launch (Bonding Curve)</span></div>
-          <div class="token-row"><span>Contract</span><span class="token-val coming">Coming Soon</span></div>
-        </div>
-        <a href="#" id="buyEvoBtnToken" class="btn-primary btn-full" onclick="alert('Coming soon! Token not launched yet.'); return false;"><i data-lucide="shopping-cart" class="icon-xs"></i> Buy $EVO on Four.meme</a>
-      </div>
-      <div class="token-features fade-up">
-        <div class="token-feature">
-          <i data-lucide="check-circle" class="feature-icon"></i>
-          <div>
-            <h4>No Presale</h4>
-            <p>100% fair launch. Everyone starts equal.</p>
-          </div>
-        </div>
-        <div class="token-feature">
-          <i data-lucide="lock" class="feature-icon"></i>
-          <div>
-            <h4>No Team Allocation</h4>
-            <p>All tokens available to the community.</p>
-          </div>
-        </div>
-        <div class="token-feature">
-          <i data-lucide="trending-up" class="feature-icon"></i>
-          <div>
-            <h4>Bonding Curve</h4>
-            <p>Price discovery through Four.meme's mechanism.</p>
-          </div>
-        </div>
-        <div class="token-feature">
-          <i data-lucide="shield" class="feature-icon"></i>
-          <div>
-            <h4>Transparent</h4>
-            <p>Open source. Verified contract on BSCScan.</p>
-          </div>
-        </div>
       </div>
     </div>
   </section>

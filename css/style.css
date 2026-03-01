@@ -1022,6 +1022,50 @@ html { scroll-behavior: smooth; }
 .roadmap-content li .spin { animation: spin 2s linear infinite; color: var(--amber); }
 @keyframes spin { to { transform: rotate(360deg); } }
 
+/* Token & NFT Combined Section */
+.token-nft-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+.token-features-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-top: 1rem;
+}
+.token-features-row .token-feature {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.8rem;
+  transition: transform .2s;
+}
+.token-features-row .token-feature:hover { transform: translateY(-3px); }
+.mint-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.mint-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+@media (max-width: 768px) {
+  .token-nft-grid { grid-template-columns: 1fr; }
+  .token-features-row { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+  .token-features-row { grid-template-columns: 1fr; }
+}
+
 /* Team */
 .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 900px; margin: 0 auto; }
 .team-card {
