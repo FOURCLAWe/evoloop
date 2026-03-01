@@ -1082,3 +1082,38 @@ html { scroll-behavior: smooth; }
 .team-role { font-size: 0.85rem; color: var(--accent2); font-weight: 600; display: block; margin-bottom: 0.8rem; }
 .team-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.5; }
 @media (max-width: 768px) { .team-grid { grid-template-columns: 1fr; } }
+
+/* Roadmap & FAQ Combined */
+.roadmap-faq-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.subsection-title {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--accent2);
+}
+.roadmap-faq-grid .roadmap-container {
+  position: relative;
+  padding-left: 1.5rem;
+}
+.roadmap-faq-grid .roadmap-line {
+  left: 8px;
+}
+.roadmap-faq-grid .roadmap-item { margin-bottom: 1.5rem; }
+.roadmap-faq-grid .roadmap-content { padding: 1rem; }
+.roadmap-faq-grid .roadmap-content h4 { font-size: 1rem; margin: 0.3rem 0 0.5rem; }
+.roadmap-faq-grid .roadmap-content ul { font-size: 0.85rem; }
+.roadmap-faq-grid .roadmap-content li { padding: 0.2rem 0; }
+.faq-container .faq-list { margin: 0; }
+.faq-container .faq-item { margin-bottom: 0.6rem; }
+.faq-container .faq-q { padding: 0.8rem 1rem; font-size: 0.9rem; }
+.faq-container .faq-a { font-size: 0.85rem; }
+@media (max-width: 900px) {
+  .roadmap-faq-grid { grid-template-columns: 1fr; gap: 2rem; }
+}
