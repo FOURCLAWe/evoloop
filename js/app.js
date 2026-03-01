@@ -76,12 +76,13 @@ function initCountUp() {
     entries.forEach(e => {
       if (e.isIntersecting && !e.target.dataset.counted) {
         e.target.dataset.counted = 'true';
-        const target = parseInt(e.target.dataset.count);
+        // Support both data-count and data-target
+        const target = parseInt(e.target.dataset.count || e.target.dataset.target);
         if (target > 0) countUp(e.target, target, 1500);
       }
     });
   }, { threshold: 0.3 });
-  document.querySelectorAll('[data-count]').forEach(el => observer.observe(el));
+  document.querySelectorAll('[data-count], [data-target]').forEach(el => observer.observe(el));
 }
 
 // --- FAQ ---
