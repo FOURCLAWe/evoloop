@@ -158,8 +158,20 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
 .hero {
   position: relative;
   text-align: center;
-  padding: 8rem 2rem 5rem;
+  padding: 8rem 2rem 4rem;
   z-index: 1;
+}
+.about-cards {
+  margin-top: 4rem;
+  max-width: 1000px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.about-cards .section-desc {
+  margin-bottom: 2rem;
+}
+.about-cards .cards {
+  text-align: left;
 }
 .hero-glow {
   position: absolute;
