@@ -773,3 +773,50 @@ html { scroll-behavior: smooth; }
 .platform-status { font-size: .8rem; white-space: nowrap; }
 .status-live { color: #22c55e; }
 .status-soon { color: #f59e0b; }
+
+/* 8004 NFT Mint Section */
+.mint-section { background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(6,182,212,0.08)); }
+.mint-box {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+.mint-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.mint-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+.mint-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+.mint-value { font-size: 1rem; font-weight: 600; color: var(--text); }
+.mint-actions { display: flex; flex-direction: column; gap: 0.8rem; margin-bottom: 1rem; }
+.btn-mint {
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  color: #fff;
+  border: none;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-mint:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(99,102,241,0.3); }
+.btn-mint:disabled { opacity: 0.5; cursor: not-allowed; }
+.mint-status { font-size: 0.9rem; color: var(--muted); min-height: 1.5rem; margin: 0.5rem 0; }
+.mint-status.success { color: #22c55e; }
+.mint-status.error { color: #ef4444; }
+.mint-link { font-size: 0.85rem; color: var(--accent2); display: inline-flex; align-items: center; gap: 0.3rem; }

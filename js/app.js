@@ -268,3 +268,122 @@ function updateParticleColors(theme) {
     updateParticleColors(saved);
   }
 })();
+
+// ========== 8004 NFT Mint ==========
+const NFT_8004_ADDRESS = '0x8004a169fb4a3325136eb29fa0ceb6d2e539a432';
+const NFT_8004_ABI = [
+  'function register() external',
+  'function balanceOf(address owner) view returns (uint256)'
+];
+
+let nft8004Connected = false;
+
+async function connect8004Wallet() {
+  const statusEl = document.getElementById('mint8004Status');
+  const connectBtn = document.getElementById('btnConnect8004');
+  const mintBtn = document.getElementById('btnMint8004');
+  
+  try {
+    statusEl.textContent = 'Connecting wallet...';
+    statusEl.className = 'mint-status';
+    
+    let ethProvider;
+    if (window.okxwallet) {
+      ethProvider = window.okxwallet;
+    } else if (window.ethereum) {
+      ethProvider = window.ethereum;
+    } else {
+      throw new Error('No wallet found. Please install OKX Wallet or MetaMask.');
+    }
+    
+    await ethProvider.request({ method: 'eth_requestAccounts' });
+    
+    const chainId = await ethProvider.request({ method: 'eth_chainId' });
+    if (chainId !== BSC_CHAIN_ID) {
+      try {
+        await ethProvider.request({
+          method: 'wallet_switchEthereumChain',
+          params: [{ chainId: BSC_CHAIN_ID }]
+        });
+      } catch (switchErr) {
+        if (switchErr.code === 4902) {
+          await ethProvider.request({
+            method: 'wallet_addEthereumChain',
+            params: [{
+              chainId: BSC_CHAIN_ID,
+              chainName: 'BNB Smart Chain',
+              nativeCurrency: { name: 'BNB', symbol: 'BNB', decimals: 18 },
+              rpcUrls: ['https://bsc-dataseed.binance.org/'],
+              blockExplorerUrls: ['https://bscscan.com/']
+            }]
+          });
+        } else {
+          throw switchErr;
+        }
+      }
+    }
+    
+    provider = new ethers.BrowserProvider(ethProvider);
+    signer = await provider.getSigner();
+    userAddr = await signer.getAddress();
+    
+    nft8004Connected = true;
+    connectBtn.innerHTML = '<i data-lucide="check" class="icon-xs"></i> ' + userAddr.slice(0, 6) + '...' + userAddr.slice(-4);
+    connectBtn.disabled = true;
+    mintBtn.disabled = false;
+    
+    // Check if already minted
+    const nftContract = new ethers.Contract(NFT_8004_ADDRESS, NFT_8004_ABI, provider);
+    const balance = await nftContract.balanceOf(userAddr);
+    if (balance > 0n) {
+      statusEl.textContent = '✅ You already have ' + balance.toString() + ' NFT(s)!';
+      statusEl.className = 'mint-status success';
+    } else {
+      statusEl.textContent = 'Ready to mint!';
+      statusEl.className = 'mint-status';
+    }
+    
+    if (window.lucide) lucide.createIcons();
+  } catch (err) {
+    statusEl.textContent = '❌ ' + (err.message || 'Connection failed');
+    statusEl.className = 'mint-status error';
+    console.error(err);
+  }
+}
+
+async function mint8004NFT() {
+  const statusEl = document.getElementById('mint8004Status');
+  const mintBtn = document.getElementById('btnMint8004');
+  
+  if (!nft8004Connected || !signer) {
+    statusEl.textContent = 'Please connect wallet first';
+    statusEl.className = 'mint-status error';
+    return;
+  }
+  
+  try {
+    mintBtn.disabled = true;
+    statusEl.textContent = '⏳ Sending transaction...';
+    statusEl.className = 'mint-status';
+    
+    const nftContract = new ethers.Contract(NFT_8004_ADDRESS, NFT_8004_ABI, signer);
+    const tx = await nftContract.register();
+    
+    statusEl.textContent = '⏳ Waiting for confirmation...';
+    await tx.wait();
+    
+    statusEl.innerHTML = '🎉 Mint successful! <a href="https://bscscan.com/tx/' + tx.hash + '" target="_blank">View TX</a>';
+    statusEl.className = 'mint-status success';
+    
+  } catch (err) {
+    let msg = err.message || 'Mint failed';
+    if (msg.includes('user rejected')) msg = 'Transaction rejected by user';
+    else if (msg.includes('insufficient funds')) msg = 'Insufficient BNB for gas';
+    else if (msg.length > 60) msg = msg.slice(0, 60) + '...';
+    
+    statusEl.textContent = '❌ ' + msg;
+    statusEl.className = 'mint-status error';
+    mintBtn.disabled = false;
+    console.error(err);
+  }
+}
