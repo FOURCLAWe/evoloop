@@ -13,20 +13,24 @@
 <body>
   <canvas id="particles"></canvas>
 
-  <nav class="navbar">
-    <div class="nav-brand"><img src="img/logo.jpg" alt="EvoLoop" class="nav-logo"> EvoLoop</div>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#how">How It Works</a>
-      <a href="#skills">Skills</a>
-      <a href="#community">Community</a>
-      <a href="#faq">FAQ</a>
-    </div>
-    <div class="nav-actions">
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar">
+    <div class="sidebar-brand"><img src="img/logo.jpg" alt="EvoLoop" class="sidebar-logo"></div>
+    <nav class="sidebar-nav">
+      <a href="#about" class="sidebar-link"><i data-lucide="info" class="icon-xs"></i><span>About</span></a>
+      <a href="#how" class="sidebar-link"><i data-lucide="list-ordered" class="icon-xs"></i><span>How It Works</span></a>
+      <a href="#skills" class="sidebar-link"><i data-lucide="puzzle" class="icon-xs"></i><span>Skills</span></a>
+      <a href="#community" class="sidebar-link"><i data-lucide="messages-square" class="icon-xs"></i><span>Community</span></a>
+      <a href="#faq" class="sidebar-link"><i data-lucide="help-circle" class="icon-xs"></i><span>FAQ</span></a>
+    </nav>
+    <div class="sidebar-actions">
       <button class="btn-theme" id="btnTheme" onclick="toggleTheme()" title="Toggle theme"><i data-lucide="sun" class="icon-xs" id="themeIcon"></i></button>
-      <button class="btn-wallet" id="btnWallet" onclick="connectWallet()"><i data-lucide="wallet" class="icon-xs"></i> Connect Wallet</button>
+      <button class="btn-wallet-sm" id="btnWallet" onclick="connectWallet()"><i data-lucide="wallet" class="icon-xs"></i></button>
     </div>
-  </nav>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
 
   <section class="hero">
     <div class="hero-glow"></div>
@@ -428,6 +432,7 @@
       </div>
     </div>
   </section>
+  </main><!-- end main-content -->
 
   <footer>
     <div class="footer-content">
