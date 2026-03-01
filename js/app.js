@@ -409,21 +409,26 @@ let nft8004Connected = false;
 
 // Fetch real NFT holder count on page load
 async function fetchNFTHolders() {
+  const holdersEl = document.getElementById('nftHolders');
   try {
-    const response = await fetch('https://api.bscscan.com/api?module=token&action=tokenholderlist&contractaddress=0x8004a169fb4a3325136eb29fa0ceb6d2e539a432&page=1&offset=1');
-    const data = await response.json();
-    // BSCScan free API doesn't give holder count directly, use totalSupply as proxy
-    const rpcProvider = new ethers.JsonRpcProvider('https://bsc-dataseed.binance.org/');
-    const nftContract = new ethers.Contract(NFT_8004_ADDRESS, NFT_8004_ABI, rpcProvider);
-    const totalSupply = await nftContract.totalSupply();
-    const holdersEl = document.getElementById('nftHolders');
-    if (holdersEl) {
-      holdersEl.textContent = Number(totalSupply).toLocaleString() + '+';
+    // Fetch BSCScan page and extract holder count
+    const response = await fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent('https://bscscan.com/token/0x8004a169fb4a3325136eb29fa0ceb6d2e539a432'));
+    const html = await response.text();
+    
+    // Extract holder count from the page (format: "Holders\n\n X,XXX")
+    const match = html.match(/Holders[\s\S]*?(\d{1,3}(?:,\d{3})*)/i);
+    if (match && match[1]) {
+      if (holdersEl) {
+        holdersEl.textContent = match[1];
+        return;
+      }
     }
+    
+    // Fallback if extraction fails
+    if (holdersEl) holdersEl.textContent = '6,500+';
   } catch (e) {
     console.error('Failed to fetch NFT holders:', e);
-    const holdersEl = document.getElementById('nftHolders');
-    if (holdersEl) holdersEl.textContent = '4,500+';
+    if (holdersEl) holdersEl.textContent = '6,500+';
   }
 }
 
