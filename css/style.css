@@ -141,6 +141,19 @@ h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
 }
 .nav-links a:hover { color: var(--text); }
 .nav-links a:hover::after { width: 100%; }
+.btn-lang {
+  background: rgba(99, 102, 241, 0.1);
+  border: 1px solid rgba(99, 102, 241, 0.2);
+  border-radius: 8px;
+  color: var(--accent2);
+  padding: 0.4rem 0.8rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s;
+}
+.btn-lang:hover { background: rgba(99, 102, 241, 0.2); border-color: var(--accent); }
+
 .btn-wallet {
   background: rgba(99, 102, 241, 0.1);
   border: 1px solid rgba(99, 102, 241, 0.3);
