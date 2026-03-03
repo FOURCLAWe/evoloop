@@ -1453,3 +1453,33 @@ body.has-sidebar footer {
 @media (max-width: 900px) {
   .token-nft-grid.three-col { grid-template-columns: 1fr; }
 }
+
+/* ========== Token page: 3-card grid ========== */
+.token-nft-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+/* Tevo mint card should match mint-box style */
+.tevo-mint-card {
+  background: var(--card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.tevo-mint-card:hover { border-color: rgba(99, 102, 241, 0.3); box-shadow: 0 0 50px rgba(99, 102, 241, 0.1); }
+
+/* Make EVO card + NFT card + TEVO card all centered and same width */
+.token-nft-grid .token-card,
+.token-nft-grid .mint-box,
+.token-nft-grid .tevo-mint-card {
+  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
+}
