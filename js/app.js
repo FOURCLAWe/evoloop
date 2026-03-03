@@ -655,3 +655,142 @@ async function mintTevo() {
   }
 }
 
+
+// ========== EXCHANGE TAB SWITCH ==========
+function switchExchangeTab(tab, btn) {
+  document.querySelectorAll('.exchange-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.exchange-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + tab).classList.add('active');
+  btn.classList.add('active');
+  if (window.lucide) lucide.createIcons();
+}
+
+// ========== EXCHANGE CALCULATOR ==========
+function calcExchange(direction) {
+  if (direction === 'evoToTevo') {
+    const evoIn = parseFloat(document.getElementById('evoInputAmount').value) || 0;
+    const tevoOut = evoIn / 22222;
+    document.getElementById('tevoOutputAmount').value = tevoOut > 0 ? tevoOut.toFixed(6) : '';
+  } else {
+    const tevoIn = parseFloat(document.getElementById('tevoInputAmount').value) || 0;
+    const evoOut = tevoIn * 22222;
+    document.getElementById('evoOutputAmount').value = evoOut > 0 ? evoOut.toLocaleString() : '';
+  }
+}
+
+// ========== FETCH EVO RESERVE ==========
+const TEVO_EXCHANGE_ABI = [
+  'function evoReserve() view returns (uint256)',
+  'function exchangeActive() view returns (bool)',
+  'function evoToken() view returns (address)',
+  'function exchangeEvoToTevo(uint256 tevoAmount) external',
+  'function exchangeTevoToEvo(uint256 tevoAmount) external'
+];
+
+async function fetchExchangeInfo() {
+  try {
+    const p = new ethers.JsonRpcProvider('https://bsc-dataseed1.binance.org');
+    const c = new ethers.Contract(TEVO_ADDRESS, TEVO_EXCHANGE_ABI, p);
+    const reserve = await c.evoReserve();
+    const formatted = Number(ethers.formatEther(reserve)).toLocaleString();
+    const r1 = document.getElementById('evoReserve');
+    const r2 = document.getElementById('evoReserve2');
+    if (r1) r1.textContent = formatted + ' EVO';
+    if (r2) r2.textContent = formatted + ' EVO';
+  } catch (e) {
+    console.error('Failed to fetch exchange info:', e);
+  }
+}
+fetchExchangeInfo();
+
+// ========== DO EXCHANGE ==========
+async function doExchange(direction) {
+  const statusEl = document.getElementById('exchangeStatus');
+
+  if (!signer) {
+    statusEl.textContent = 'Please connect wallet first';
+    statusEl.className = 'mint-status error';
+    return;
+  }
+
+  try {
+    const tevoContract = new ethers.Contract(TEVO_ADDRESS, TEVO_EXCHANGE_ABI, signer);
+
+    // Check if exchange is active
+    const active = await tevoContract.exchangeActive();
+    if (!active) {
+      statusEl.textContent = '❌ Exchange is not active yet. Waiting for EVO launch.';
+      statusEl.className = 'mint-status error';
+      return;
+    }
+
+    const evoAddr = await tevoContract.evoToken();
+    if (evoAddr === '0x0000000000000000000000000000000000000000') {
+      statusEl.textContent = '❌ EVO token address not set yet.';
+      statusEl.className = 'mint-status error';
+      return;
+    }
+
+    const evoABI = [
+      'function approve(address spender, uint256 amount) returns (bool)',
+      'function allowance(address owner, address spender) view returns (uint256)'
+    ];
+
+    if (direction === 'evoToTevo') {
+      const evoIn = parseFloat(document.getElementById('evoInputAmount').value);
+      if (!evoIn || evoIn <= 0) { statusEl.textContent = '❌ Enter EVO amount'; statusEl.className = 'mint-status error'; return; }
+
+      const tevoOut = evoIn / 22222;
+      const tevoWei = ethers.parseEther(tevoOut.toString());
+      const evoWei = ethers.parseEther(evoIn.toString());
+
+      statusEl.textContent = '⏳ Approving EVO...';
+      statusEl.className = 'mint-status';
+
+      const evoContract = new ethers.Contract(evoAddr, evoABI, signer);
+      const allowance = await evoContract.allowance(userAddr, TEVO_ADDRESS);
+      if (allowance < evoWei) {
+        const approveTx = await evoContract.approve(TEVO_ADDRESS, evoWei);
+        await approveTx.wait();
+      }
+
+      statusEl.textContent = '⏳ Swapping EVO → TEVO...';
+      const tx = await tevoContract.exchangeEvoToTevo(tevoWei, { gasLimit: 300000 });
+      await tx.wait();
+
+      statusEl.innerHTML = '🎉 Swap successful! <a href="https://bscscan.com/tx/' + tx.hash + '" target="_blank" style="color:var(--cyan)">View TX</a>';
+      statusEl.className = 'mint-status success';
+
+    } else {
+      const tevoIn = parseFloat(document.getElementById('tevoInputAmount').value);
+      if (!tevoIn || tevoIn <= 0) { statusEl.textContent = '❌ Enter TEVO amount'; statusEl.className = 'mint-status error'; return; }
+
+      const tevoWei = ethers.parseEther(tevoIn.toString());
+
+      statusEl.textContent = '⏳ Swapping TEVO → EVO...';
+      statusEl.className = 'mint-status';
+
+      const tx = await tevoContract.exchangeTevoToEvo(tevoWei, { gasLimit: 300000 });
+      await tx.wait();
+
+      statusEl.innerHTML = '🎉 Swap successful! <a href="https://bscscan.com/tx/' + tx.hash + '" target="_blank" style="color:var(--cyan)">View TX</a>';
+      statusEl.className = 'mint-status success';
+    }
+
+    fetchExchangeInfo();
+    fetchTevoStats();
+
+  } catch (err) {
+    let msg = err.message || 'Exchange failed';
+    if (msg.includes('user rejected')) msg = 'Transaction rejected';
+    else if (msg.includes('Exchange not active')) msg = 'Exchange not active yet';
+    else if (msg.includes('Insufficient EVO reserve')) msg = 'Insufficient EVO in reserve';
+    else if (msg.includes('Exceeds max supply')) msg = 'TEVO max supply reached';
+    else if (msg.length > 80) msg = msg.slice(0, 80) + '...';
+
+    statusEl.textContent = '❌ ' + msg;
+    statusEl.className = 'mint-status error';
+    console.error(err);
+  }
+}
+

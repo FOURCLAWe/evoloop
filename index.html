@@ -24,7 +24,7 @@
           <i data-lucide="home" class="nav-icon"></i><span>Home</span>
         </a>
         <a href="#mint" class="nav-item" data-page="mint" onclick="switchPage('mint'); return false;">
-          <i data-lucide="hexagon" class="nav-icon"></i><span>Mint</span>
+          <i data-lucide="coins" class="nav-icon"></i><span>Token</span>
         </a>
         <a href="#openclaw" class="nav-item" data-page="openclaw" onclick="switchPage('openclaw'); return false;">
           <i data-lucide="cpu" class="nav-icon"></i><span>OpenClaw</span>
@@ -186,7 +186,13 @@
       <div class="tevo-mint-card fade-up">
         <div class="mint-badge bnb">0.001 BNB</div>
         <h3 class="mint-title"><i data-lucide="coins" class="icon-xs"></i> Mint TEVO</h3>
-        <p class="mint-desc">Mint Tevo tokens — requires holding 8004 NFT. 1 minute cooldown between mints.</p>
+        <p class="mint-desc">Mint Tevo tokens with the following conditions:</p>
+        <ul class="mint-conditions">
+          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Must hold at least 1 <strong>8004 NFT</strong> (AgentIdentity)</li>
+          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Each mint costs <strong>0.001 BNB</strong></li>
+          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Each wallet can mint <strong>1 TEVO per 60 seconds</strong></li>
+          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Public mint cap: <strong>7,000 TEVO</strong> (70% of total supply)</li>
+        </ul>
         <div class="mint-info">
           <div class="mint-stat"><span class="mint-label">Contract</span><span class="mint-value">0xC401...85A1</span></div>
           <div class="mint-stat"><span class="mint-label">Total Supply</span><span class="mint-value">10,000 TEVO</span></div>
@@ -210,6 +216,72 @@
         </a>
       </div>
 
+    </div>
+
+    <!-- Tevo <-> Evo Exchange -->
+    <h2 class="section-title fade-up" style="margin-top:3rem"><i data-lucide="arrow-left-right" class="icon-title"></i> TEVO ↔ EVO Exchange</h2>
+    <p class="section-desc fade-up">Swap between TEVO and EVO at a fixed ratio of <strong>1 TEVO = 22,222 EVO</strong>. Bidirectional exchange powered by the Tevo smart contract.</p>
+
+    <div class="exchange-box fade-up">
+      <div class="exchange-tabs">
+        <button class="exchange-tab active" onclick="switchExchangeTab('evoToTevo', this)">EVO → TEVO</button>
+        <button class="exchange-tab" onclick="switchExchangeTab('tevoToEvo', this)">TEVO → EVO</button>
+      </div>
+
+      <!-- EVO -> TEVO -->
+      <div class="exchange-panel active" id="panel-evoToTevo">
+        <div class="exchange-input-group">
+          <label>You Pay</label>
+          <div class="exchange-input-row">
+            <input type="number" id="evoInputAmount" placeholder="0" oninput="calcExchange('evoToTevo')">
+            <span class="exchange-token">EVO</span>
+          </div>
+        </div>
+        <div class="exchange-arrow"><i data-lucide="arrow-down" class="icon-xs"></i></div>
+        <div class="exchange-input-group">
+          <label>You Receive</label>
+          <div class="exchange-input-row">
+            <input type="text" id="tevoOutputAmount" placeholder="0" readonly>
+            <span class="exchange-token">TEVO</span>
+          </div>
+        </div>
+        <div class="exchange-detail">
+          <span>Rate: 22,222 EVO = 1 TEVO</span>
+          <span>EVO Reserve: <span id="evoReserve">--</span></span>
+        </div>
+        <button class="btn-mint" id="btnExchangeEtoT" onclick="doExchange('evoToTevo')" style="margin-top:1rem;width:100%">
+          <i data-lucide="repeat" class="icon-xs"></i> Swap EVO → TEVO
+        </button>
+      </div>
+
+      <!-- TEVO -> EVO -->
+      <div class="exchange-panel" id="panel-tevoToEvo">
+        <div class="exchange-input-group">
+          <label>You Pay</label>
+          <div class="exchange-input-row">
+            <input type="number" id="tevoInputAmount" placeholder="0" oninput="calcExchange('tevoToEvo')">
+            <span class="exchange-token">TEVO</span>
+          </div>
+        </div>
+        <div class="exchange-arrow"><i data-lucide="arrow-down" class="icon-xs"></i></div>
+        <div class="exchange-input-group">
+          <label>You Receive</label>
+          <div class="exchange-input-row">
+            <input type="text" id="evoOutputAmount" placeholder="0" readonly>
+            <span class="exchange-token">EVO</span>
+          </div>
+        </div>
+        <div class="exchange-detail">
+          <span>Rate: 1 TEVO = 22,222 EVO</span>
+          <span>EVO Reserve: <span id="evoReserve2">--</span></span>
+        </div>
+        <button class="btn-mint" id="btnExchangeTtoE" onclick="doExchange('tevoToEvo')" style="margin-top:1rem;width:100%">
+          <i data-lucide="repeat" class="icon-xs"></i> Swap TEVO → EVO
+        </button>
+      </div>
+
+      <p class="mint-status" id="exchangeStatus"></p>
+      <p class="exchange-note"><i data-lucide="info" class="icon-xs"></i> Exchange will be available after EVO token launches on Four.meme</p>
     </div>
     
     <!-- Token Features -->

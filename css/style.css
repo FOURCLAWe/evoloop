@@ -1312,3 +1312,144 @@ body.has-sidebar footer {
   .main-wrapper { margin-left: 0; padding-top: 54px; }
   .content-header { display: none; }
 }
+
+/* ========== Mint Conditions List ========== */
+.mint-conditions {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5rem;
+  text-align: left;
+}
+.mint-conditions li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0;
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.mint-conditions li strong { color: var(--text); }
+
+/* ========== EXCHANGE BOX ========== */
+.exchange-box {
+  background: var(--card);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  padding: 2rem 2.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.exchange-box:hover { border-color: rgba(99, 102, 241, 0.3); box-shadow: 0 0 50px rgba(99, 102, 241, 0.1); }
+
+.exchange-tabs {
+  display: flex;
+  background: var(--bg3);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 1.5rem;
+}
+
+.exchange-tab {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background: none;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-family: inherit;
+}
+
+.exchange-tab.active {
+  background: linear-gradient(135deg, var(--accent), var(--cyan));
+  color: #fff;
+}
+
+.exchange-panel { display: none; }
+.exchange-panel.active { display: block; }
+
+.exchange-input-group {
+  margin-bottom: 0.8rem;
+}
+
+.exchange-input-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--muted);
+  margin-bottom: 0.4rem;
+}
+
+.exchange-input-row {
+  display: flex;
+  align-items: center;
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.8rem 1rem;
+  transition: border-color 0.2s;
+}
+
+.exchange-input-row:focus-within { border-color: var(--accent); }
+
+.exchange-input-row input {
+  flex: 1;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1.2rem;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  outline: none;
+  width: 100%;
+}
+
+.exchange-input-row input::placeholder { color: var(--muted); opacity: 0.5; }
+
+.exchange-token {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--accent2);
+  padding-left: 0.8rem;
+  white-space: nowrap;
+}
+
+.exchange-arrow {
+  text-align: center;
+  padding: 0.5rem;
+  color: var(--muted);
+}
+
+.exchange-detail {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--muted);
+  padding: 0.5rem 0;
+}
+
+.exchange-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: var(--amber);
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+  border-radius: 10px;
+}
+
+/* Token NFT grid: 3 columns for 3 cards */
+.token-nft-grid.three-col {
+  grid-template-columns: repeat(3, 1fr);
+}
+@media (max-width: 900px) {
+  .token-nft-grid.three-col { grid-template-columns: 1fr; }
+}
