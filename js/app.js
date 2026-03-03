@@ -220,14 +220,33 @@ function toggleFaq(el) {
 
 // --- Wallet ---
 function getWalletProvider() {
+  // Priority: OKX > MetaMask > Rabby > any injected wallet
   if (window.okxwallet) return window.okxwallet;
+  if (window.ethereum?.isMetaMask) return window.ethereum;
+  if (window.ethereum?.isRabby) return window.ethereum;
   if (window.ethereum) return window.ethereum;
+  // Check for Bitget/TokenPocket etc
+  if (window.bitkeep?.ethereum) return window.bitkeep.ethereum;
+  if (window.trustwallet) return window.trustwallet;
+  return null;
+}
+
+function getWalletName() {
+  if (window.okxwallet) return 'OKX Wallet';
+  if (window.ethereum?.isMetaMask) return 'MetaMask';
+  if (window.ethereum?.isRabby) return 'Rabby';
+  if (window.bitkeep?.ethereum) return 'Bitget Wallet';
+  if (window.trustwallet) return 'Trust Wallet';
+  if (window.ethereum) return 'Wallet';
   return null;
 }
 
 async function connectWallet() {
   const walletProvider = getWalletProvider();
-  if (!walletProvider) { alert('Please install OKX Wallet or MetaMask'); return; }
+  if (!walletProvider) { 
+    alert('No wallet detected!\n\nSupported wallets:\n• OKX Wallet\n• MetaMask\n• Rabby\n• Bitget Wallet\n• Trust Wallet\n\nPlease install one and refresh the page.');
+    return; 
+  }
   try {
     await walletProvider.request({ method: 'eth_requestAccounts' });
     const chainId = await walletProvider.request({ method: 'eth_chainId' });
@@ -252,10 +271,11 @@ async function connectWallet() {
     userAddr = await signer.getAddress();
 
     const short = userAddr.slice(0, 6) + '...' + userAddr.slice(-4);
-    document.getElementById('btnWallet').textContent = short;
-    document.getElementById('btnWallet').classList.add('connected');
-    document.getElementById('chatInput').disabled = false;
-    document.getElementById('btnSend').disabled = false;
+    const walletBtn = document.getElementById('btnWallet');
+    if (walletBtn) {
+      walletBtn.textContent = short;
+      walletBtn.classList.add('connected');
+    }
   } catch (e) {
     console.error(e);
     alert('Connection failed: ' + e.message);
@@ -444,14 +464,11 @@ async function connect8004Wallet() {
     statusEl.textContent = 'Connecting wallet...';
     statusEl.className = 'mint-status';
     
-    let ethProvider;
-    if (window.okxwallet) {
-      ethProvider = window.okxwallet;
-    } else if (window.ethereum) {
-      ethProvider = window.ethereum;
-    } else {
-      throw new Error('No wallet found. Please install OKX Wallet or MetaMask.');
+    const ethProvider = getWalletProvider();
+    if (!ethProvider) {
+      throw new Error('No wallet detected. Supports: OKX Wallet, MetaMask, Rabby, Bitget, Trust Wallet.');
     }
+    const walletName = getWalletName();
     
     await ethProvider.request({ method: 'eth_requestAccounts' });
     
@@ -485,7 +502,7 @@ async function connect8004Wallet() {
     userAddr = await signer.getAddress();
     
     nft8004Connected = true;
-    connectBtn.innerHTML = '<i data-lucide="check" class="icon-xs"></i> ' + userAddr.slice(0, 6) + '...' + userAddr.slice(-4);
+    connectBtn.innerHTML = '<i data-lucide="check" class="icon-xs"></i> ' + (walletName ? walletName + ' · ' : '') + userAddr.slice(0, 6) + '...' + userAddr.slice(-4);
     connectBtn.disabled = true;
     mintBtn.disabled = false;
     
@@ -601,9 +618,33 @@ async function mintTevo() {
   const mintBtn = document.getElementById('btnMintTevo');
   
   if (!signer) {
-    statusEl.textContent = 'Please connect wallet first';
-    statusEl.className = 'mint-status error';
-    return;
+    // Auto-connect wallet if not connected
+    statusEl.textContent = '⏳ Connecting wallet...';
+    statusEl.className = 'mint-status';
+    try {
+      const ethProvider = getWalletProvider();
+      if (!ethProvider) {
+        statusEl.textContent = '❌ No wallet detected. Install OKX/MetaMask/Rabby.';
+        statusEl.className = 'mint-status error';
+        return;
+      }
+      await ethProvider.request({ method: 'eth_requestAccounts' });
+      const chainId = await ethProvider.request({ method: 'eth_chainId' });
+      if (chainId !== BSC_CHAIN_ID) {
+        await ethProvider.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: BSC_CHAIN_ID }] }).catch(async (e) => {
+          if (e.code === 4902) {
+            await ethProvider.request({ method: 'wallet_addEthereumChain', params: [{ chainId: BSC_CHAIN_ID, chainName: 'BNB Smart Chain', nativeCurrency: { name: 'BNB', symbol: 'BNB', decimals: 18 }, rpcUrls: ['https://bsc-dataseed.binance.org/'], blockExplorerUrls: ['https://bscscan.com/'] }] });
+          } else throw e;
+        });
+      }
+      provider = new ethers.BrowserProvider(ethProvider);
+      signer = await provider.getSigner();
+      userAddr = await signer.getAddress();
+    } catch (e) {
+      statusEl.textContent = '❌ ' + (e.message || 'Wallet connection failed');
+      statusEl.className = 'mint-status error';
+      return;
+    }
   }
   
   try {
@@ -708,9 +749,27 @@ async function doExchange(direction) {
   const statusEl = document.getElementById('exchangeStatus');
 
   if (!signer) {
-    statusEl.textContent = 'Please connect wallet first';
-    statusEl.className = 'mint-status error';
-    return;
+    statusEl.textContent = '⏳ Connecting wallet...';
+    statusEl.className = 'mint-status';
+    try {
+      const ethProvider = getWalletProvider();
+      if (!ethProvider) { statusEl.textContent = '❌ No wallet detected.'; statusEl.className = 'mint-status error'; return; }
+      await ethProvider.request({ method: 'eth_requestAccounts' });
+      const chainId = await ethProvider.request({ method: 'eth_chainId' });
+      if (chainId !== BSC_CHAIN_ID) {
+        await ethProvider.request({ method: 'wallet_switchEthereumChain', params: [{ chainId: BSC_CHAIN_ID }] }).catch(async (e) => {
+          if (e.code === 4902) await ethProvider.request({ method: 'wallet_addEthereumChain', params: [{ chainId: BSC_CHAIN_ID, chainName: 'BNB Smart Chain', nativeCurrency: { name: 'BNB', symbol: 'BNB', decimals: 18 }, rpcUrls: ['https://bsc-dataseed.binance.org/'], blockExplorerUrls: ['https://bscscan.com/'] }] });
+          else throw e;
+        });
+      }
+      provider = new ethers.BrowserProvider(ethProvider);
+      signer = await provider.getSigner();
+      userAddr = await signer.getAddress();
+    } catch (e) {
+      statusEl.textContent = '❌ ' + (e.message || 'Connection failed');
+      statusEl.className = 'mint-status error';
+      return;
+    }
   }
 
   try {
