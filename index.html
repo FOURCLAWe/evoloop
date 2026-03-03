@@ -205,14 +205,14 @@
         <a href="https://bscscan.com/address/0xC40174FC5d5f3ab6899247909d777831DE7f85A1" target="_blank" class="mint-link"><i data-lucide="external-link" class="icon-xs"></i> View on BSCScan</a>
       </div>
 
-      <!-- ④ 右下: Exchange -->
+      <!-- ④ 右下: Burn / Exchange -->
       <div class="quad-card fade-up">
-        <h3 class="mint-title"><i data-lucide="arrow-left-right" class="icon-xs"></i> $TEVO ↔ $EVO Exchange</h3>
-        <p class="mint-desc">Step 3: Fixed ratio 1 $TEVO = 22,222 $EVO</p>
+        <h3 class="mint-title"><i data-lucide="flame" class="icon-xs"></i> $TEVO & $EVO Burn</h3>
+        <p class="mint-desc">Burn $TEVO to redeem $EVO, or burn $EVO to mint $TEVO. Fixed ratio 1:22,222.</p>
 
         <div class="exchange-tabs">
-          <button class="exchange-tab active" onclick="switchExchangeTab('evoToTevo', this)">$EVO → $TEVO</button>
-          <button class="exchange-tab" onclick="switchExchangeTab('tevoToEvo', this)">$TEVO → $EVO</button>
+          <button class="exchange-tab active" onclick="switchExchangeTab('evoToTevo', this)">Burn $EVO → Mint $TEVO</button>
+          <button class="exchange-tab" onclick="switchExchangeTab('tevoToEvo', this)">Burn $TEVO → Get $EVO</button>
         </div>
 
         <div class="exchange-panel active" id="panel-evoToTevo">
@@ -236,7 +236,7 @@
             <span>Reserve: <span id="evoReserve">--</span></span>
           </div>
           <button class="btn-mint" id="btnExchangeEtoT" onclick="doExchange('evoToTevo')" style="margin-top:0.8rem;width:100%">
-            <i data-lucide="repeat" class="icon-xs"></i> Swap
+            <i data-lucide="flame" class="icon-xs"></i> Burn & Mint
           </button>
         </div>
 
@@ -261,7 +261,7 @@
             <span>Reserve: <span id="evoReserve2">--</span></span>
           </div>
           <button class="btn-mint" id="btnExchangeTtoE" onclick="doExchange('tevoToEvo')" style="margin-top:0.8rem;width:100%">
-            <i data-lucide="repeat" class="icon-xs"></i> Swap
+            <i data-lucide="flame" class="icon-xs"></i> Burn & Redeem
           </button>
         </div>
 
