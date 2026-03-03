@@ -10,7 +10,62 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="img/logo.jpg" type="image/jpeg">
 </head>
-<body>
+<body class="has-sidebar">
+
+  <!-- ========== LEFT SIDEBAR ========== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-top">
+      <div class="sidebar-brand">
+        <img src="img/logo.jpg" alt="EvoLoop" class="sidebar-logo">
+        <span class="sidebar-title">EvoLoop</span>
+      </div>
+      <nav class="sidebar-nav">
+        <a href="#home" class="nav-item active" data-page="home" onclick="switchPage('home'); return false;">
+          <i data-lucide="home" class="nav-icon"></i><span>Home</span>
+        </a>
+        <a href="#mint" class="nav-item" data-page="mint" onclick="switchPage('mint'); return false;">
+          <i data-lucide="hexagon" class="nav-icon"></i><span>Mint</span>
+        </a>
+        <a href="#openclaw" class="nav-item" data-page="openclaw" onclick="switchPage('openclaw'); return false;">
+          <i data-lucide="cpu" class="nav-icon"></i><span>OpenClaw</span>
+        </a>
+        <a href="#roadmap" class="nav-item" data-page="roadmap" onclick="switchPage('roadmap'); return false;">
+          <i data-lucide="map" class="nav-icon"></i><span>Roadmap</span>
+        </a>
+      </nav>
+    </div>
+    <div class="sidebar-bottom">
+      <button class="sidebar-btn" onclick="toggleLang()" title="Switch Language">
+        <i data-lucide="languages" class="nav-icon"></i><span id="btnLangSidebar">EN/中</span>
+      </button>
+      <button class="sidebar-btn" onclick="toggleTheme()" title="Toggle theme">
+        <i data-lucide="sun" class="nav-icon" id="themeIconSidebar"></i><span>Theme</span>
+      </button>
+      <a href="https://x.com/evoloopdev?s=21" target="_blank" class="sidebar-btn">
+        <i data-lucide="twitter" class="nav-icon"></i><span>Twitter</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ========== MOBILE TOPBAR ========== -->
+  <header class="mobile-topbar" id="mobileTopbar">
+    <button class="topbar-toggle" onclick="toggleSidebar()"><i data-lucide="menu" class="icon-xs"></i></button>
+    <div class="topbar-brand"><img src="img/logo.jpg" alt="EvoLoop" class="topbar-logo"> EvoLoop</div>
+    <button class="btn-wallet" id="btnWalletMobile" onclick="connectWallet()" style="padding:0.4rem 0.8rem;font-size:0.8rem;"><i data-lucide="wallet" class="icon-xs"></i></button>
+  </header>
+
+  <!-- ========== MAIN WRAPPER ========== -->
+  <div class="main-wrapper">
+    <div class="content-header">
+      <div class="breadcrumb" id="breadcrumb"><i data-lucide="home" class="icon-xs"></i> <span>Home</span></div>
+      <button class="btn-wallet" id="btnWallet" onclick="connectWallet()">
+        <i data-lucide="wallet" class="icon-xs"></i> <span data-i18n="connect_wallet">Connect Wallet</span>
+      </button>
+    </div>
+
+    <!-- ==================== PAGE: HOME ==================== -->
+    <div class="page-section active" id="page-home">
+
   <canvas id="particles"></canvas>
 
   <nav class="navbar">
@@ -82,6 +137,9 @@
     </div>
   </section>
 
+    </div>
+    <!-- ==================== PAGE: MINT ==================== -->
+    <div class="page-section" id="page-mint">
   <!-- Token & NFT Section -->
   <section id="token" class="section">
     <h2 class="section-title fade-up"><i data-lucide="coins" class="icon-title"></i> <span data-i18n="token_nft_title">$EVO Token & NFT</span></h2>
@@ -122,7 +180,36 @@
         </div>
         <p class="mint-status" id="mint8004Status"></p>
         <a href="https://bscscan.com/token/0x8004a169fb4a3325136eb29fa0ceb6d2e539a432" target="_blank" class="mint-link"><i data-lucide="external-link" class="icon-xs"></i> View on BSCScan</a>
+
+      
+      <!-- Tevo Mint Card -->
+      <div class="tevo-mint-card fade-up">
+        <div class="mint-badge bnb">0.001 BNB</div>
+        <h3 class="mint-title"><i data-lucide="coins" class="icon-xs"></i> Mint TEVO</h3>
+        <p class="mint-desc">Mint Tevo tokens — requires holding 8004 NFT. 1 minute cooldown between mints.</p>
+        <div class="mint-info">
+          <div class="mint-stat"><span class="mint-label">Contract</span><span class="mint-value">0xC401...85A1</span></div>
+          <div class="mint-stat"><span class="mint-label">Total Supply</span><span class="mint-value">10,000 TEVO</span></div>
+          <div class="mint-stat"><span class="mint-label">Public Mint</span><span class="mint-value">7,000 TEVO</span></div>
+          <div class="mint-stat"><span class="mint-label">Minted</span><span class="mint-value" id="tevoMinted">Loading...</span></div>
+          <div class="mint-stat"><span class="mint-label">Price</span><span class="mint-value" style="color:var(--amber)">0.001 BNB / TEVO</span></div>
+          <div class="mint-stat"><span class="mint-label">Cooldown</span><span class="mint-value" id="tevoCooldown">60s per wallet</span></div>
+        </div>
+        <div class="progress-bar" style="margin:1.5rem 0 0.5rem">
+          <div class="progress-fill" id="tevoProgress" style="width:0%"></div>
+        </div>
+        <p class="progress-text" id="tevoProgressText" style="text-align:center;margin-bottom:1.5rem">0 / 7,000</p>
+        <div class="mint-actions">
+          <button id="btnMintTevo" class="btn-mint" onclick="mintTevo()">
+            <i data-lucide="zap" class="icon-xs"></i> Mint 1 TEVO (0.001 BNB)
+          </button>
+        </div>
+        <p class="mint-status" id="mintTevoStatus"></p>
+        <a href="https://bscscan.com/address/0xC40174FC5d5f3ab6899247909d777831DE7f85A1" target="_blank" class="mint-link">
+          <i data-lucide="external-link" class="icon-xs"></i> View on BSCScan
+        </a>
       </div>
+
     </div>
     
     <!-- Token Features -->
@@ -218,6 +305,9 @@
     </div>
   </section>
 
+    </div>
+    <!-- ==================== PAGE: ROADMAP ==================== -->
+    <div class="page-section" id="page-roadmap">
   <section id="how" class="section">
     <h2 class="section-title fade-up"><i data-lucide="list-ordered" class="icon-title"></i> How It Works</h2>
     <div class="steps">
@@ -248,6 +338,9 @@
   </section>
 
   <!-- Core Capabilities -->
+    </div>
+    <!-- ==================== PAGE: OPENCLAW ==================== -->
+    <div class="page-section" id="page-openclaw">
   <section id="capabilities" class="section">
     <h2 class="section-title fade-up"><i data-lucide="zap" class="icon-title"></i> Core Capabilities</h2>
     <p class="section-desc fade-up">What makes EvoLoop agents powerful.</p>
@@ -602,6 +695,10 @@
       </div>
     </div>
   </section>
+
+    </div>
+  </div>
+  <!-- End main-wrapper -->
 
   <footer>
     <div class="footer-content">

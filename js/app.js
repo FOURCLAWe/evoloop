@@ -544,3 +544,114 @@ async function mint8004NFT() {
     console.error(err);
   }
 }
+
+// ========== PAGE SWITCHING ==========
+function switchPage(pageName) {
+  document.querySelectorAll('.page-section').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + pageName).classList.add('active');
+  
+  document.querySelectorAll('.sidebar-nav .nav-item').forEach(n => n.classList.remove('active'));
+  document.querySelector('[data-page="' + pageName + '"]').classList.add('active');
+  
+  const breadcrumbMap = { home: 'Home', mint: 'Mint', openclaw: 'OpenClaw', roadmap: 'Roadmap' };
+  document.querySelector('#breadcrumb span').textContent = breadcrumbMap[pageName] || 'Home';
+  
+  document.getElementById('sidebar').classList.remove('open');
+  if (window.lucide) lucide.createIcons();
+}
+
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+}
+
+// ========== TEVO MINT ==========
+const TEVO_ADDRESS = '0xC40174FC5d5f3ab6899247909d777831DE7f85A1';
+const TEVO_ABI = [
+  'function mint() external payable',
+  'function publicMinted() view returns (uint256)',
+  'function mintRemaining() view returns (uint256)',
+  'function cooldownRemaining(address user) view returns (uint256)',
+  'function balanceOf(address owner) view returns (uint256)'
+];
+
+async function fetchTevoStats() {
+  try {
+    const provider = new ethers.JsonRpcProvider('https://bsc-dataseed1.binance.org');
+    const contract = new ethers.Contract(TEVO_ADDRESS, TEVO_ABI, provider);
+    const minted = await contract.publicMinted();
+    const mintedNum = Number(ethers.formatEther(minted));
+    const progress = (mintedNum / 7000) * 100;
+    
+    const mintedEl = document.getElementById('tevoMinted');
+    const progressEl = document.getElementById('tevoProgress');
+    const progressTextEl = document.getElementById('tevoProgressText');
+    
+    if (mintedEl) mintedEl.textContent = mintedNum.toFixed(0) + ' / 7,000';
+    if (progressEl) progressEl.style.width = progress + '%';
+    if (progressTextEl) progressTextEl.textContent = mintedNum.toFixed(0) + ' / 7,000';
+  } catch (e) {
+    console.error('Failed to fetch Tevo stats:', e);
+  }
+}
+
+fetchTevoStats();
+
+async function mintTevo() {
+  const statusEl = document.getElementById('mintTevoStatus');
+  const mintBtn = document.getElementById('btnMintTevo');
+  
+  if (!signer) {
+    statusEl.textContent = 'Please connect wallet first';
+    statusEl.className = 'mint-status error';
+    return;
+  }
+  
+  try {
+    mintBtn.disabled = true;
+    statusEl.textContent = '⏳ Checking requirements...';
+    statusEl.className = 'mint-status';
+    
+    const nftContract = new ethers.Contract(NFT_8004_ADDRESS, NFT_8004_ABI, provider);
+    const nftBalance = await nftContract.balanceOf(userAddr);
+    if (nftBalance === 0n) {
+      statusEl.textContent = '❌ You need to mint 8004 NFT first!';
+      statusEl.className = 'mint-status error';
+      mintBtn.disabled = false;
+      return;
+    }
+    
+    const tevoContract = new ethers.Contract(TEVO_ADDRESS, TEVO_ABI, signer);
+    const cooldown = await tevoContract.cooldownRemaining(userAddr);
+    if (cooldown > 0n) {
+      statusEl.textContent = '❌ Cooldown: ' + cooldown.toString() + 's remaining';
+      statusEl.className = 'mint-status error';
+      mintBtn.disabled = false;
+      return;
+    }
+    
+    statusEl.textContent = '⏳ Sending transaction...';
+    const tx = await tevoContract.mint({ value: ethers.parseEther('0.001'), gasLimit: 200000 });
+    
+    statusEl.textContent = '⏳ Waiting for confirmation...';
+    await tx.wait();
+    
+    statusEl.innerHTML = '🎉 Mint successful! <a href="https://bscscan.com/tx/' + tx.hash + '" target="_blank" style="color:var(--cyan)">View TX</a>';
+    statusEl.className = 'mint-status success';
+    
+    fetchTevoStats();
+    
+  } catch (err) {
+    let msg = err.message || 'Mint failed';
+    if (msg.includes('user rejected')) msg = 'Transaction rejected';
+    else if (msg.includes('insufficient funds')) msg = 'Insufficient BNB';
+    else if (msg.includes('Must hold 8004 NFT')) msg = 'Need 8004 NFT first';
+    else if (msg.includes('Cooldown active')) msg = 'Cooldown active, wait 60s';
+    else if (msg.length > 80) msg = msg.slice(0, 80) + '...';
+    
+    statusEl.textContent = '❌ ' + msg;
+    statusEl.className = 'mint-status error';
+    mintBtn.disabled = false;
+    console.error(err);
+  }
+}
+

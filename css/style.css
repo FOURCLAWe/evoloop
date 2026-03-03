@@ -1130,3 +1130,185 @@ html { scroll-behavior: smooth; }
 @media (max-width: 900px) {
   .roadmap-faq-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
+
+/* ========== LEFT SIDEBAR LAYOUT ========== */
+.sidebar {
+  position: fixed;
+  left: 0; top: 0;
+  width: 220px;
+  height: 100vh;
+  background: var(--bg2);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  z-index: 200;
+  transition: transform 0.3s ease;
+}
+
+.sidebar-top { flex: 1; padding: 20px 14px; overflow-y: auto; }
+
+.sidebar-brand {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 28px; padding: 0 8px;
+}
+
+.sidebar-logo {
+  width: 34px; height: 34px;
+  border-radius: 8px; object-fit: cover;
+}
+
+.sidebar-title {
+  font-size: 1.2rem; font-weight: 700;
+  font-family: 'Space Grotesk', sans-serif;
+  background: linear-gradient(135deg, var(--accent2), var(--cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sidebar-nav { display: flex; flex-direction: column; gap: 4px; }
+
+.sidebar-nav .nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 10px;
+  color: var(--muted); text-decoration: none;
+  font-size: 0.9rem; font-weight: 500;
+  transition: all 0.2s; cursor: pointer;
+}
+
+.sidebar-nav .nav-item:hover { background: var(--bg3); color: var(--text); }
+
+.sidebar-nav .nav-item.active {
+  background: linear-gradient(135deg, var(--accent), var(--cyan));
+  color: #fff;
+}
+
+.sidebar-nav .nav-item .nav-icon { width: 18px; height: 18px; flex-shrink: 0; }
+
+.sidebar-bottom {
+  padding: 14px;
+  border-top: 1px solid var(--border);
+  display: flex; flex-direction: column; gap: 4px;
+}
+
+.sidebar-btn {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 12px; border-radius: 10px;
+  background: none; border: none;
+  color: var(--muted); font-size: 0.85rem; font-weight: 500;
+  cursor: pointer; transition: all 0.2s;
+  text-decoration: none; width: 100%;
+  font-family: inherit;
+}
+
+.sidebar-btn:hover { background: var(--bg3); color: var(--text); }
+
+/* Mobile topbar */
+.mobile-topbar {
+  display: none;
+  position: fixed; top: 0; left: 0; right: 0;
+  height: 54px;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  align-items: center; padding: 0 16px;
+  z-index: 199; gap: 12px;
+}
+
+.mobile-topbar .topbar-toggle {
+  background: none; border: none;
+  color: var(--text); cursor: pointer; padding: 6px;
+}
+
+.mobile-topbar .topbar-brand {
+  display: flex; align-items: center; gap: 8px;
+  font-weight: 700; flex: 1;
+  font-family: 'Space Grotesk', sans-serif;
+}
+
+.mobile-topbar .topbar-logo {
+  width: 28px; height: 28px; border-radius: 6px;
+}
+
+/* Main content shifted */
+.main-wrapper {
+  margin-left: 220px;
+  min-height: 100vh;
+  position: relative; z-index: 1;
+}
+
+/* Content header */
+.content-header {
+  position: sticky; top: 0;
+  background: rgba(12, 15, 26, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 28px;
+  display: flex; align-items: center; justify-content: space-between;
+  z-index: 50;
+}
+
+[data-theme="light"] .content-header {
+  background: rgba(248, 250, 252, 0.85);
+}
+
+.breadcrumb {
+  display: flex; align-items: center; gap: 8px;
+  color: var(--muted); font-size: 0.9rem;
+}
+
+/* Page switching */
+.page-section { display: none; }
+.page-section.active { display: block; }
+
+/* Hide old navbar when sidebar is used */
+body.has-sidebar .navbar { display: none; }
+
+/* Override old section max-width in sidebar mode */
+body.has-sidebar .section {
+  max-width: 1100px;
+  padding-top: 2.5rem;
+  padding-bottom: 2.5rem;
+}
+
+body.has-sidebar .hero {
+  padding-top: 4rem;
+}
+
+body.has-sidebar footer {
+  padding: 2rem;
+}
+
+/* Tevo Mint card */
+.tevo-mint-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 500px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.tevo-mint-card .mint-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.tevo-mint-card .mint-badge.bnb {
+  background: rgba(251, 191, 36, 0.1);
+  color: var(--amber);
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+/* Responsive sidebar */
+@media (max-width: 768px) {
+  .sidebar { transform: translateX(-100%); }
+  .sidebar.open { transform: translateX(0); }
+  .mobile-topbar { display: flex; }
+  .main-wrapper { margin-left: 0; padding-top: 54px; }
+  .content-header { display: none; }
+}
