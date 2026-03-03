@@ -695,8 +695,8 @@ async function fetchExchangeInfo() {
     const formatted = Number(ethers.formatEther(reserve)).toLocaleString();
     const r1 = document.getElementById('evoReserve');
     const r2 = document.getElementById('evoReserve2');
-    if (r1) r1.textContent = formatted + ' EVO';
-    if (r2) r2.textContent = formatted + ' EVO';
+    if (r1) r1.textContent = formatted + ' $EVO';
+    if (r2) r2.textContent = formatted + ' $EVO';
   } catch (e) {
     console.error('Failed to fetch exchange info:', e);
   }
@@ -783,7 +783,7 @@ async function doExchange(direction) {
   } catch (err) {
     let msg = err.message || 'Exchange failed';
     if (msg.includes('user rejected')) msg = 'Transaction rejected';
-    else if (msg.includes('Exchange not active')) msg = 'Exchange not active yet';
+    else if (msg.includes('Exchange not active yet')) msg = 'Exchange not active yet';
     else if (msg.includes('Insufficient EVO reserve')) msg = 'Insufficient EVO in reserve';
     else if (msg.includes('Exceeds max supply')) msg = 'TEVO max supply reached';
     else if (msg.length > 80) msg = msg.slice(0, 80) + '...';
