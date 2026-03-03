@@ -1624,3 +1624,54 @@ body.has-sidebar footer {
   .installer-box { grid-template-columns: 1fr; }
   .skill-list { grid-template-columns: 1fr; }
 }
+
+/* ========== TEVO Tokenomics ========== */
+.tevo-economics {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+.econ-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.econ-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.econ-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.econ-icon {
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(99,102,241,0.08);
+  border-radius: 12px;
+}
+.econ-text h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+}
+.econ-text p {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.5;
+}
+@media (max-width: 900px) {
+  .econ-grid { grid-template-columns: 1fr; }
+}
