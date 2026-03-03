@@ -169,7 +169,6 @@ const skillsData = [
   { name: 'Weather', icon: '🌤️', desc: 'Current weather and forecasts via wttr.in or Open-Meteo. No API key needed.', tags: ['official', 'search'], downloads: '980', official: true, slug: 'weather' },
   { name: 'Baidu Search', icon: '🔎', desc: 'Web search via Baidu AI Search API. Real-time Chinese web results.', tags: ['official', 'search'], downloads: '896', official: true, slug: 'baidu-search' },
   { name: 'Feishu Office Suite', icon: '💼', desc: 'Full Feishu/Lark integration — calendar, messaging, approvals, spreadsheets.', tags: ['official', 'automation'], downloads: '890', official: true, slug: 'feishu-office' },
-  { name: '4Claw Mint', icon: '🪙', desc: 'Mint 4Claw tokens on BSC. 100 tokens every 15 minutes per agent.', tags: ['web3'], downloads: '650', official: false, slug: '4claw-mint' },
   { name: 'EvoLoop Mint', icon: '🔄', desc: 'Mint EVO tokens on BSC. Interact with the EvoLoop ecosystem.', tags: ['web3'], downloads: '520', official: false, slug: 'evoloop-mint' },
   { name: 'Financial Analysis', icon: '📊', desc: 'Stock analysis, market trends, and investment insights toolkit.', tags: ['search', 'automation'], downloads: '789', official: false, slug: 'financial-analysis' },
   { name: 'Jimeng AI Creator', icon: '🎬', desc: 'Text-to-video, image generation, multi-image composition, AI super-resolution.', tags: ['official', 'creative'], downloads: '442', official: true, slug: 'jimeng-ai' },
