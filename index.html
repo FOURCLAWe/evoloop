@@ -134,39 +134,20 @@
     </div>
     <!-- ==================== PAGE: MINT ==================== -->
     <div class="page-section" id="page-mint">
-  <!-- Token & NFT Section -->
-  <section id="token" class="section">
+  <section id="token" class="section" style="max-width:1200px">
     <h2 class="section-title fade-up"><i data-lucide="coins" class="icon-title"></i> <span data-i18n="token_nft_title">Token & NFT</span></h2>
     <p class="section-desc fade-up" data-i18n="token_nft_desc">Mint, hold, and swap — all on BSC.</p>
     
-    <div class="token-nft-grid">
-      <!-- Token Card -->
-      <div class="token-card main-card fade-up">
-        <div class="token-header">
-          <img src="img/logo.jpg" alt="EVO" class="token-logo">
-          <div class="token-title">
-            <h3>EvoLoop ($EVO)</h3>
-            <span class="token-chain"><i data-lucide="link" class="icon-xs"></i> BNB Chain (BSC)</span>
-          </div>
-        </div>
-        <div class="token-details">
-          <div class="token-row"><span data-i18n="total_supply">Total Supply</span><span class="token-val">1,000,000,000 $EVO</span></div>
-          <div class="token-row"><span data-i18n="launch_platform">Launch Platform</span><span class="token-val">Four.meme</span></div>
-          <div class="token-row"><span data-i18n="launch_type">Launch Type</span><span class="token-val" data-i18n="fair_launch">Fair Launch (Bonding Curve)</span></div>
-          <div class="token-row"><span data-i18n="contract">Contract</span><span class="token-val coming" data-i18n="coming_soon">Coming Soon</span></div>
-        </div>
-        <a href="#" id="buyEvoBtnToken" class="btn-primary btn-full" onclick="alert('Coming soon! Token not launched yet.'); return false;"><i data-lucide="shopping-cart" class="icon-xs"></i> <span data-i18n="buy_on_four">Buy $EVO on Four.meme</span></a>
-      </div>
-      
-      <!-- NFT Mint Card -->
-      <div class="mint-box fade-up">
+    <div class="token-quad-grid">
+      <!-- ① 左上: 8004 Agent NFT Mint -->
+      <div class="quad-card fade-up">
         <h3 class="mint-title"><i data-lucide="hexagon" class="icon-xs"></i> <span data-i18n="mint_8004">Mint 8004 Agent NFT</span></h3>
-        <p class="mint-desc" data-i18n="mint_desc">Step 1: Your entry ticket to EvoLoop. Hold this NFT to unlock $TEVO minting. Free, only pay gas.</p>
+        <p class="mint-desc" data-i18n="mint_desc">Step 1: Your entry ticket. Hold this NFT to unlock $TEVO minting. Free, only pay gas.</p>
         <div class="mint-info">
-          <div class="mint-stat"><span class="mint-label" data-i18n="contract">Contract</span><span class="mint-value">0x8004...9a432</span></div>
-          <div class="mint-stat"><span class="mint-label" data-i18n="network">Network</span><span class="mint-value">BSC</span></div>
-          <div class="mint-stat"><span class="mint-label" data-i18n="holders">Holders</span><span class="mint-value" id="nftHolders">Loading...</span></div>
-          <div class="mint-stat"><span class="mint-label" data-i18n="price">Price</span><span class="mint-value" data-i18n="free">FREE</span></div>
+          <div class="mint-stat"><span class="mint-label">Contract</span><span class="mint-value">0x8004...9a432</span></div>
+          <div class="mint-stat"><span class="mint-label">Network</span><span class="mint-value">BSC</span></div>
+          <div class="mint-stat"><span class="mint-label">Holders</span><span class="mint-value" id="nftHolders">Loading...</span></div>
+          <div class="mint-stat"><span class="mint-label">Price</span><span class="mint-value" style="color:var(--green)">FREE</span></div>
         </div>
         <div class="mint-actions">
           <button id="btnConnect8004" class="btn-primary" onclick="connect8004Wallet()"><i data-lucide="wallet" class="icon-xs"></i> <span data-i18n="connect_wallet">Connect Wallet</span></button>
@@ -176,199 +157,125 @@
         <a href="https://bscscan.com/token/0x8004a169fb4a3325136eb29fa0ceb6d2e539a432" target="_blank" class="mint-link"><i data-lucide="external-link" class="icon-xs"></i> View on BSCScan</a>
       </div>
 
-      
-      <!-- Tevo Mint Card -->
-      <div class="tevo-mint-card fade-up">
+      <!-- ② 右上: $EVO Info -->
+      <div class="quad-card fade-up">
+        <div class="token-header">
+          <img src="img/logo.jpg" alt="EVO" class="token-logo">
+          <div class="token-title">
+            <h3>$EVO</h3>
+            <span class="token-chain"><i data-lucide="link" class="icon-xs"></i> BNB Chain · Four.meme</span>
+          </div>
+        </div>
+        <div class="token-details">
+          <div class="token-row"><span>Total Supply</span><span class="token-val">1,000,000,000</span></div>
+          <div class="token-row"><span>Launch</span><span class="token-val">Fair Launch (Bonding Curve)</span></div>
+          <div class="token-row"><span>Presale</span><span class="token-val" style="color:var(--green)">None</span></div>
+          <div class="token-row"><span>Team Allocation</span><span class="token-val" style="color:var(--green)">None</span></div>
+          <div class="token-row"><span>Exchange Rate</span><span class="token-val">22,222 $EVO = 1 $TEVO</span></div>
+          <div class="token-row"><span>Contract</span><span class="token-val coming">Coming Soon</span></div>
+        </div>
+        <a href="#" class="btn-primary btn-full" onclick="alert('Coming soon!'); return false;" style="margin-top:1rem"><i data-lucide="shopping-cart" class="icon-xs"></i> Buy $EVO on Four.meme</a>
+      </div>
+
+      <!-- ③ 左下: $TEVO Mint -->
+      <div class="quad-card fade-up">
         <div class="mint-badge bnb">0.001 BNB</div>
         <h3 class="mint-title"><i data-lucide="coins" class="icon-xs"></i> Mint $TEVO</h3>
-        <p class="mint-desc">Step 2: Mint $TEVO tokens with the following conditions:</p>
+        <p class="mint-desc">Step 2: Requires 8004 Agent NFT</p>
         <ul class="mint-conditions">
-          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Must hold at least 1 <strong>8004 Agent NFT</strong> (AgentIdentity)</li>
-          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Each mint costs <strong>0.001 BNB</strong></li>
-          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Each wallet can mint <strong>1 $TEVO per 60 seconds</strong></li>
-          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Public mint cap: <strong>7,000 $TEVO</strong> (70% of total supply)</li>
+          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Hold <strong>8004 Agent NFT</strong></li>
+          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Cost: <strong>0.001 BNB</strong> per mint</li>
+          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Cooldown: <strong>60 seconds</strong></li>
+          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Cap: <strong>7,000 $TEVO</strong> (70%)</li>
         </ul>
         <div class="mint-info">
-          <div class="mint-stat"><span class="mint-label">Contract</span><span class="mint-value">0xC401...85A1</span></div>
           <div class="mint-stat"><span class="mint-label">Total Supply</span><span class="mint-value">10,000 $TEVO</span></div>
-          <div class="mint-stat"><span class="mint-label">Public Mint</span><span class="mint-value">7,000 $TEVO</span></div>
           <div class="mint-stat"><span class="mint-label">Minted</span><span class="mint-value" id="tevoMinted">Loading...</span></div>
-          <div class="mint-stat"><span class="mint-label">Price</span><span class="mint-value" style="color:var(--amber)">0.001 BNB / $TEVO</span></div>
-          <div class="mint-stat"><span class="mint-label">Cooldown</span><span class="mint-value" id="tevoCooldown">60s per wallet</span></div>
         </div>
-        <div class="progress-bar" style="margin:1.5rem 0 0.5rem">
+        <div class="progress-bar" style="margin:1rem 0 0.5rem">
           <div class="progress-fill" id="tevoProgress" style="width:0%"></div>
         </div>
-        <p class="progress-text" id="tevoProgressText" style="text-align:center;margin-bottom:1.5rem">0 / 7,000</p>
+        <p class="progress-text" id="tevoProgressText" style="text-align:center;margin-bottom:1rem">0 / 7,000</p>
         <div class="mint-actions">
           <button id="btnMintTevo" class="btn-mint" onclick="mintTevo()">
             <i data-lucide="zap" class="icon-xs"></i> Mint 1 $TEVO (0.001 BNB)
           </button>
         </div>
         <p class="mint-status" id="mintTevoStatus"></p>
-        <a href="https://bscscan.com/address/0xC40174FC5d5f3ab6899247909d777831DE7f85A1" target="_blank" class="mint-link">
-          <i data-lucide="external-link" class="icon-xs"></i> View on BSCScan
-        </a>
+        <a href="https://bscscan.com/address/0xC40174FC5d5f3ab6899247909d777831DE7f85A1" target="_blank" class="mint-link"><i data-lucide="external-link" class="icon-xs"></i> View on BSCScan</a>
       </div>
 
+      <!-- ④ 右下: Exchange -->
+      <div class="quad-card fade-up">
+        <h3 class="mint-title"><i data-lucide="arrow-left-right" class="icon-xs"></i> $TEVO ↔ $EVO Exchange</h3>
+        <p class="mint-desc">Step 3: Fixed ratio 1 $TEVO = 22,222 $EVO</p>
+
+        <div class="exchange-tabs">
+          <button class="exchange-tab active" onclick="switchExchangeTab('evoToTevo', this)">$EVO → $TEVO</button>
+          <button class="exchange-tab" onclick="switchExchangeTab('tevoToEvo', this)">$TEVO → $EVO</button>
+        </div>
+
+        <div class="exchange-panel active" id="panel-evoToTevo">
+          <div class="exchange-input-group">
+            <label>You Pay</label>
+            <div class="exchange-input-row">
+              <input type="number" id="evoInputAmount" placeholder="0" oninput="calcExchange('evoToTevo')">
+              <span class="exchange-token">$EVO</span>
+            </div>
+          </div>
+          <div class="exchange-arrow"><i data-lucide="arrow-down" class="icon-xs"></i></div>
+          <div class="exchange-input-group">
+            <label>You Receive</label>
+            <div class="exchange-input-row">
+              <input type="text" id="tevoOutputAmount" placeholder="0" readonly>
+              <span class="exchange-token">$TEVO</span>
+            </div>
+          </div>
+          <div class="exchange-detail">
+            <span>22,222 $EVO = 1 $TEVO</span>
+            <span>Reserve: <span id="evoReserve">--</span></span>
+          </div>
+          <button class="btn-mint" id="btnExchangeEtoT" onclick="doExchange('evoToTevo')" style="margin-top:0.8rem;width:100%">
+            <i data-lucide="repeat" class="icon-xs"></i> Swap
+          </button>
+        </div>
+
+        <div class="exchange-panel" id="panel-tevoToEvo">
+          <div class="exchange-input-group">
+            <label>You Pay</label>
+            <div class="exchange-input-row">
+              <input type="number" id="tevoInputAmount" placeholder="0" oninput="calcExchange('tevoToEvo')">
+              <span class="exchange-token">$TEVO</span>
+            </div>
+          </div>
+          <div class="exchange-arrow"><i data-lucide="arrow-down" class="icon-xs"></i></div>
+          <div class="exchange-input-group">
+            <label>You Receive</label>
+            <div class="exchange-input-row">
+              <input type="text" id="evoOutputAmount" placeholder="0" readonly>
+              <span class="exchange-token">$EVO</span>
+            </div>
+          </div>
+          <div class="exchange-detail">
+            <span>1 $TEVO = 22,222 $EVO</span>
+            <span>Reserve: <span id="evoReserve2">--</span></span>
+          </div>
+          <button class="btn-mint" id="btnExchangeTtoE" onclick="doExchange('tevoToEvo')" style="margin-top:0.8rem;width:100%">
+            <i data-lucide="repeat" class="icon-xs"></i> Swap
+          </button>
+        </div>
+
+        <p class="mint-status" id="exchangeStatus"></p>
+        <p class="exchange-note"><i data-lucide="info" class="icon-xs"></i> Opens after $EVO launches on Four.meme</p>
+      </div>
     </div>
 
-    <!-- Tevo <-> Evo Exchange -->
-    <h2 class="section-title fade-up" style="margin-top:3rem"><i data-lucide="arrow-left-right" class="icon-title"></i> Step 3: $TEVO ↔ $EVO Exchange</h2>
-    <p class="section-desc fade-up">Swap between $TEVO and $EVO at a fixed ratio of <strong>1 $TEVO = 22,222 $EVO</strong>. Bidirectional exchange powered by the Tevo smart contract.</p>
-
-    <div class="exchange-box fade-up">
-      <div class="exchange-tabs">
-        <button class="exchange-tab active" onclick="switchExchangeTab('evoToTevo', this)">$EVO → $TEVO</button>
-        <button class="exchange-tab" onclick="switchExchangeTab('tevoToEvo', this)">$TEVO → $EVO</button>
-      </div>
-
-      <!-- EVO -> TEVO -->
-      <div class="exchange-panel active" id="panel-evoToTevo">
-        <div class="exchange-input-group">
-          <label>You Pay</label>
-          <div class="exchange-input-row">
-            <input type="number" id="evoInputAmount" placeholder="0" oninput="calcExchange('evoToTevo')">
-            <span class="exchange-token">$EVO</span>
-          </div>
-        </div>
-        <div class="exchange-arrow"><i data-lucide="arrow-down" class="icon-xs"></i></div>
-        <div class="exchange-input-group">
-          <label>You Receive</label>
-          <div class="exchange-input-row">
-            <input type="text" id="tevoOutputAmount" placeholder="0" readonly>
-            <span class="exchange-token">$TEVO</span>
-          </div>
-        </div>
-        <div class="exchange-detail">
-          <span>Rate: 22,222 $EVO = 1 $TEVO</span>
-          <span>EVO Reserve: <span id="evoReserve">--</span></span>
-        </div>
-        <button class="btn-mint" id="btnExchangeEtoT" onclick="doExchange('evoToTevo')" style="margin-top:1rem;width:100%">
-          <i data-lucide="repeat" class="icon-xs"></i> Swap $EVO → $TEVO
-        </button>
-      </div>
-
-      <!-- TEVO -> EVO -->
-      <div class="exchange-panel" id="panel-tevoToEvo">
-        <div class="exchange-input-group">
-          <label>You Pay</label>
-          <div class="exchange-input-row">
-            <input type="number" id="tevoInputAmount" placeholder="0" oninput="calcExchange('tevoToEvo')">
-            <span class="exchange-token">$TEVO</span>
-          </div>
-        </div>
-        <div class="exchange-arrow"><i data-lucide="arrow-down" class="icon-xs"></i></div>
-        <div class="exchange-input-group">
-          <label>You Receive</label>
-          <div class="exchange-input-row">
-            <input type="text" id="evoOutputAmount" placeholder="0" readonly>
-            <span class="exchange-token">$EVO</span>
-          </div>
-        </div>
-        <div class="exchange-detail">
-          <span>Rate: 1 $TEVO = 22,222 $EVO</span>
-          <span>EVO Reserve: <span id="evoReserve2">--</span></span>
-        </div>
-        <button class="btn-mint" id="btnExchangeTtoE" onclick="doExchange('tevoToEvo')" style="margin-top:1rem;width:100%">
-          <i data-lucide="repeat" class="icon-xs"></i> Swap $TEVO → $EVO
-        </button>
-      </div>
-
-      <p class="mint-status" id="exchangeStatus"></p>
-      <p class="exchange-note"><i data-lucide="info" class="icon-xs"></i> Exchange will be available after EVO token launches on Four.meme</p>
-    </div>
-    
-    <!-- Token Features -->
-    <div class="token-features-row fade-up">
-      <div class="token-feature">
-        <i data-lucide="check-circle" class="feature-icon"></i>
-        <div>
-          <h4 data-i18n="no_presale">No Presale</h4>
-          <p data-i18n="no_presale_desc">100% fair launch. Everyone starts equal.</p>
-        </div>
-      </div>
-      <div class="token-feature">
-        <i data-lucide="lock" class="feature-icon"></i>
-        <div>
-          <h4 data-i18n="no_team">No Team Allocation</h4>
-          <p data-i18n="no_team_desc">All tokens available to the community.</p>
-        </div>
-      </div>
-      <div class="token-feature">
-        <i data-lucide="trending-up" class="feature-icon"></i>
-        <div>
-          <h4 data-i18n="bonding_curve">Bonding Curve</h4>
-          <p data-i18n="bonding_curve_desc">Price discovery through Four.meme's mechanism.</p>
-        </div>
-      </div>
-      <div class="token-feature">
-        <i data-lucide="shield" class="feature-icon"></i>
-        <div>
-          <h4 data-i18n="transparent">Transparent</h4>
-          <p data-i18n="transparent_desc">Open source. Verified contract on BSCScan.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Key Stats -->
-  <section id="stats" class="section stats-section">
-    <div class="stats-grid">
-      <div class="stat-item fade-up">
-        <div class="stat-number" data-target="10000">0</div>
-        <div class="stat-label">$TEVO Total Supply</div>
-      </div>
-      <div class="stat-item fade-up">
-        <div class="stat-number" data-target="7000">0</div>
-        <div class="stat-label">$TEVO Public Mint</div>
-      </div>
-      <div class="stat-item fade-up">
-        <div class="stat-number" data-target="22222">0</div>
-        <div class="stat-label">$EVO per $TEVO</div>
-      </div>
-      <div class="stat-item fade-up">
-        <div class="stat-number" data-target="6500">0</div>
-        <div class="stat-label">8004 Agent NFT Holders</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Why This Model -->
-  <section id="usecases" class="section">
-    <h2 class="section-title fade-up"><i data-lucide="target" class="icon-title"></i> Why This Model?</h2>
-    <p class="section-desc fade-up">What makes the dual-token system work.</p>
-    <div class="usecase-grid">
-      <div class="usecase-card fade-up">
-        <div class="usecase-icon">🔒</div>
-        <h3>NFT-Gated Minting</h3>
-        <p>Only 8004 Agent NFT holders can mint $TEVO. This creates real demand for the NFT and limits supply.</p>
-      </div>
-      <div class="usecase-card fade-up">
-        <div class="usecase-icon">⚖️</div>
-        <h3>Fixed Ratio Anchor</h3>
-        <p>1 $TEVO = 22,222 $EVO. Always. The smart contract guarantees this exchange rate.</p>
-      </div>
-      <div class="usecase-card fade-up">
-        <div class="usecase-icon">💰</div>
-        <h3>Arbitrage Opportunity</h3>
-        <p>When market prices diverge from the fixed ratio, arbitrageurs profit by rebalancing — keeping both tokens anchored.</p>
-      </div>
-      <div class="usecase-card fade-up">
-        <div class="usecase-icon">📊</div>
-        <h3>Scarce Supply</h3>
-        <p>Only 10,000 $TEVO will ever exist. 7,000 for public mint, 3,000 for LP. No inflation.</p>
-      </div>
-      <div class="usecase-card fade-up">
-        <div class="usecase-icon">✅</div>
-        <h3>Fair Launch</h3>
-        <p>$EVO launches on Four.meme with bonding curve. No presale, no team allocation.</p>
-      </div>
-      <div class="usecase-card fade-up">
-        <div class="usecase-icon">🔗</div>
-        <h3>Fully On-Chain</h3>
-        <p>All contracts verified on BSCScan. Mint, swap, and LP — everything transparent and trustless.</p>
-      </div>
+    <!-- Bottom Stats Bar -->
+    <div class="token-stats-bar fade-up">
+      <div class="ts-item"><span class="ts-val">10,000</span><span class="ts-label">$TEVO Supply</span></div>
+      <div class="ts-item"><span class="ts-val">7,000</span><span class="ts-label">Public Mint</span></div>
+      <div class="ts-item"><span class="ts-val">1:22,222</span><span class="ts-label">Exchange Rate</span></div>
+      <div class="ts-item"><span class="ts-val" id="nftHolders2">6,500+</span><span class="ts-label">NFT Holders</span></div>
     </div>
   </section>
 
