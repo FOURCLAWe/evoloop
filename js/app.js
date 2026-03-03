@@ -31,7 +31,7 @@ const i18n = {
     contract: 'Contract',
     coming_soon: 'Coming Soon',
     buy_on_four: 'Buy $EVO on Four.meme',
-    mint_8004: 'Mint 8004 NFT',
+    mint_8004: 'Mint 8004 Agent NFT',
     mint_desc: 'Mint your AgentIdentity NFT to unlock Four.meme benefits. Free mint, only pay gas.',
     network: 'Network',
     holders: 'Holders',
@@ -82,7 +82,7 @@ const i18n = {
     contract: '合约地址',
     coming_soon: '即将公布',
     buy_on_four: '在 Four.meme 购买 $EVO',
-    mint_8004: '铸造 8004 NFT',
+    mint_8004: '铸造 8004 Agent NFT',
     mint_desc: '铸造你的 AgentIdentity NFT 解锁 Four.meme 福利。免费铸造，仅需 gas。',
     network: '网络',
     holders: '持有者',
@@ -397,7 +397,7 @@ function updateParticleColors(theme) {
   }
 })();
 
-// ========== 8004 NFT Mint ==========
+// ========== 8004 Agent NFT Mint ==========
 const NFT_8004_ADDRESS = '0x8004a169fb4a3325136eb29fa0ceb6d2e539a432';
 const NFT_8004_ABI = [
   'function register() external',
@@ -614,7 +614,7 @@ async function mintTevo() {
     const nftContract = new ethers.Contract(NFT_8004_ADDRESS, NFT_8004_ABI, provider);
     const nftBalance = await nftContract.balanceOf(userAddr);
     if (nftBalance === 0n) {
-      statusEl.textContent = '❌ You need to mint 8004 NFT first!';
+      statusEl.textContent = '❌ You need to mint 8004 Agent NFT first!';
       statusEl.className = 'mint-status error';
       mintBtn.disabled = false;
       return;
@@ -644,7 +644,7 @@ async function mintTevo() {
     let msg = err.message || 'Mint failed';
     if (msg.includes('user rejected')) msg = 'Transaction rejected';
     else if (msg.includes('insufficient funds')) msg = 'Insufficient BNB';
-    else if (msg.includes('Must hold 8004 NFT')) msg = 'Need 8004 NFT first';
+    else if (msg.includes('Must hold 8004 Agent NFT')) msg = 'Need 8004 Agent NFT first';
     else if (msg.includes('Cooldown active')) msg = 'Cooldown active, wait 60s';
     else if (msg.length > 80) msg = msg.slice(0, 80) + '...';
     
