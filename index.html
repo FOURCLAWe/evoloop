@@ -120,7 +120,7 @@
         <div class="card fade-up">
           <div class="card-icon-wrap"><i data-lucide="coins" class="card-lucide"></i></div>
           <h3>② $TEVO</h3>
-          <p>Total supply: 10,000. Mint with 0.001 BNB (requires 8004 Agent NFT). 70% public mint, 30% LP. Swaps 1:22,222 with $EVO.</p>
+          <p>Total supply: 10,000. Mint with 0.001 BNB (requires 8004 Agent NFT). 3% DEX tax → buyback & burn. All mint proceeds → LP within 15 min.</p>
         </div>
         <div class="card fade-up">
           <div class="card-icon-wrap"><i data-lucide="zap" class="card-lucide"></i></div>
@@ -171,6 +171,7 @@
           <div class="token-row"><span>Launch</span><span class="token-val">Fair Launch (Bonding Curve)</span></div>
           <div class="token-row"><span>Presale</span><span class="token-val" style="color:var(--green)">None</span></div>
           <div class="token-row"><span>Team Allocation</span><span class="token-val" style="color:var(--green)">None</span></div>
+          <div class="token-row"><span>Deflation</span><span class="token-val" style="color:var(--amber)">Buyback & Burn</span></div>
           <div class="token-row"><span>Exchange Rate</span><span class="token-val">22,222 $EVO = 1 $TEVO</span></div>
           <div class="token-row"><span>Contract</span><span class="token-val coming">Coming Soon</span></div>
         </div>
@@ -181,12 +182,14 @@
       <div class="quad-card fade-up">
         <div class="mint-badge bnb">0.001 BNB</div>
         <h3 class="mint-title"><i data-lucide="coins" class="icon-xs"></i> Mint $TEVO</h3>
-        <p class="mint-desc">Step 2: Requires 8004 Agent NFT</p>
+        <p class="mint-desc">Step 2: Requires 8004 Agent NFT. 3% DEX tax, all fees → buyback & burn.</p>
         <ul class="mint-conditions">
           <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Hold <strong>8004 Agent NFT</strong></li>
           <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Cost: <strong>0.001 BNB</strong> per mint</li>
           <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Cooldown: <strong>60 seconds</strong></li>
           <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Cap: <strong>7,000 $TEVO</strong> (70%)</li>
+          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> DEX Tax: <strong>3%</strong> buy & sell</li>
+          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> LP: <strong>100% mint proceeds → liquidity</strong></li>
         </ul>
         <div class="mint-info">
           <div class="mint-stat"><span class="mint-label">Total Supply</span><span class="mint-value">10,000 $TEVO</span></div>
@@ -208,7 +211,7 @@
       <!-- ④ 右下: Burn / Exchange -->
       <div class="quad-card fade-up">
         <h3 class="mint-title"><i data-lucide="flame" class="icon-xs"></i> $TEVO & $EVO Burn</h3>
-        <p class="mint-desc">Burn $TEVO to redeem $EVO, or burn $EVO to mint $TEVO. Fixed ratio 1:22,222.</p>
+        <p class="mint-desc">Burn to swap at fixed 1:22,222 ratio. 3% DEX tax revenue also used for buyback & burn to stabilize prices.</p>
 
         <div class="exchange-tabs">
           <button class="exchange-tab active" onclick="switchExchangeTab('evoToTevo', this)">Burn $EVO → Mint $TEVO</button>
@@ -333,7 +336,7 @@
         <div class="step-num"><i data-lucide="arrow-left-right" class="icon-step"></i></div>
         <div class="step-content">
           <h3>Step 3: Swap $TEVO ↔ $EVO</h3>
-          <p>After $EVO launches on Four.meme, swap freely at 1 $TEVO = 22,222 $EVO. Arbitrage keeps prices anchored.</p>
+          <p>After $EVO launches on Four.meme, swap freely at 1 $TEVO = 22,222 $EVO. 3% DEX tax on $TEVO trades funds buyback & burn of both tokens.</p>
         </div>
       </div>
     </div>
@@ -433,7 +436,7 @@
               <span>How does the $TEVO ↔ $EVO exchange work?</span>
               <span class="faq-arrow">▾</span>
             </div>
-            <div class="faq-a">The Tevo smart contract lets you swap at a fixed ratio of 1 $TEVO = 22,222 $EVO. Deposit EVO to mint TEVO, or burn TEVO to withdraw EVO. Arbitrage keeps market prices anchored.</div>
+            <div class="faq-a">The Tevo smart contract lets you swap at a fixed ratio of 1 $TEVO = 22,222 $EVO. Deposit EVO to mint TEVO, or burn TEVO to withdraw EVO. $TEVO has a 3% DEX buy/sell tax — all fees go to buying back and burning both $TEVO and $EVO, keeping the price ratio stable.</div>
           </div>
           <div class="faq-item">
             <div class="faq-q" onclick="toggleFaq(this)">
@@ -441,6 +444,20 @@
               <span class="faq-arrow">▾</span>
             </div>
             <div class="faq-a">$EVO will launch on Four.meme on BSC. Fair launch, no presale. Follow @evoloopdev for the official announcement!</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>Where does the minting money go?</span>
+              <span class="faq-arrow">▾</span>
+            </div>
+            <div class="faq-a">100% of BNB collected from $TEVO minting goes directly to adding liquidity on DEX. LP is added within 15 minutes after mint completes. No team wallet, no diversion.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q" onclick="toggleFaq(this)">
+              <span>What is the 3% DEX tax?</span>
+              <span class="faq-arrow">▾</span>
+            </div>
+            <div class="faq-a">Every $TEVO buy and sell on DEX incurs a 3% fee. All collected fees are used to buy back and burn both $TEVO and $EVO, creating continuous deflation and stabilizing the price relationship between the two tokens.</div>
           </div>
         </div>
       </div>
