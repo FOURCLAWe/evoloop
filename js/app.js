@@ -583,6 +583,7 @@ function toggleSidebar() {
 
 // ========== TEVO MINT ==========
 const TEVO_ADDRESS = '0xC40174FC5d5f3ab6899247909d777831DE7f85A1';
+const EVO_ADDRESS = '0x0df11bce6e586090b0043382004204d7a9a14444';
 const TEVO_ABI = [
   'function mint() external payable',
   'function publicMinted() view returns (uint256)',
