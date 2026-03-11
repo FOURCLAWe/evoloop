@@ -10,611 +10,170 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="img/logo.jpg" type="image/jpeg">
 </head>
-<body class="has-sidebar">
+<body>
 
-  <!-- ========== LEFT SIDEBAR ========== -->
-  <aside class="sidebar" id="sidebar">
-    <div class="sidebar-top">
-      <div class="sidebar-brand">
-        <img src="img/logo.jpg" alt="EvoLoop" class="sidebar-logo">
-        <span class="sidebar-title">EvoLoop</span>
-      </div>
-      <nav class="sidebar-nav">
-        <a href="#home" class="nav-item active" data-page="home" onclick="switchPage('home'); return false;">
-          <i data-lucide="home" class="nav-icon"></i><span>Home</span>
-        </a>
-        <a href="#mint" class="nav-item" data-page="mint" onclick="switchPage('mint'); return false;">
-          <i data-lucide="coins" class="nav-icon"></i><span>Token</span>
-        </a>
-        <a href="#openclaw" class="nav-item" data-page="openclaw" onclick="switchPage('openclaw'); return false;">
-          <i data-lucide="cpu" class="nav-icon"></i><span>OpenClaw</span>
-        </a>
-        <a href="#roadmap" class="nav-item" data-page="roadmap" onclick="switchPage('roadmap'); return false;">
-          <i data-lucide="map" class="nav-icon"></i><span>Roadmap</span>
-        </a>
-      </nav>
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="topbar">
+    <div class="topbar-left">
+      <img src="img/logo.jpg" alt="EvoLoop" class="topbar-logo">
+      <span class="topbar-title">EvoLoop</span>
     </div>
-    <div class="sidebar-bottom">
-      <button class="sidebar-btn" onclick="toggleLang()" title="Switch Language">
-        <i data-lucide="languages" class="nav-icon"></i><span id="btnLangSidebar">EN/中</span>
-      </button>
-      <button class="sidebar-btn" onclick="toggleTheme()" title="Toggle theme">
-        <i data-lucide="sun" class="nav-icon" id="themeIconSidebar"></i><span>Theme</span>
-      </button>
-      <a href="https://x.com/evoloopdev?s=21" target="_blank" class="sidebar-btn">
-        <i data-lucide="twitter" class="nav-icon"></i><span>Twitter</span>
+    <div class="topbar-right">
+      <a href="https://x.com/evoloopdev?s=21" target="_blank" class="topbar-link">
+        <i data-lucide="twitter" class="icon-xs"></i> Twitter
       </a>
-    </div>
-  </aside>
-
-  <!-- ========== MOBILE TOPBAR ========== -->
-  <header class="mobile-topbar" id="mobileTopbar">
-    <button class="topbar-toggle" onclick="toggleSidebar()"><i data-lucide="menu" class="icon-xs"></i></button>
-    <div class="topbar-brand"><img src="img/logo.jpg" alt="EvoLoop" class="topbar-logo"> EvoLoop</div>
-    <button class="btn-wallet" id="btnWalletMobile" onclick="connectWallet()" style="padding:0.4rem 0.8rem;font-size:0.8rem;"><i data-lucide="wallet" class="icon-xs"></i></button>
-  </header>
-
-  <!-- ========== MAIN WRAPPER ========== -->
-  <div class="main-wrapper">
-    <div class="content-header">
-      <div class="breadcrumb" id="breadcrumb"><i data-lucide="home" class="icon-xs"></i> <span>Home</span></div>
-      <button class="btn-wallet" id="btnWallet" onclick="connectWallet()">
-        <i data-lucide="wallet" class="icon-xs"></i> <span data-i18n="connect_wallet">Connect Wallet</span>
-      </button>
-    </div>
-
-    <!-- ==================== PAGE: HOME ==================== -->
-    <div class="page-section active" id="page-home">
-
-  <canvas id="particles"></canvas>
-
-  <nav class="navbar">
-    <div class="nav-brand"><img src="img/logo.jpg" alt="EvoLoop" class="nav-logo"> EvoLoop</div>
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#token">Token</a>
-      <a href="#skills">Skills</a>
-      <a href="#roadmap">Roadmap</a>
-    </div>
-    <div class="nav-actions">
-      <button class="btn-lang" id="btnLang" onclick="toggleLang()" title="Switch Language">EN/中</button>
-      <button class="btn-theme" id="btnTheme" onclick="toggleTheme()" title="Toggle theme"><i data-lucide="sun" class="icon-xs" id="themeIcon"></i></button>
-      <button class="btn-wallet" id="btnWallet" onclick="connectWallet()"><i data-lucide="wallet" class="icon-xs"></i> <span data-i18n="connect_wallet">Connect Wallet</span></button>
+      <a href="https://flap.sh/bnb/board" target="_blank" class="btn-primary">
+        <i data-lucide="rocket" class="icon-xs"></i> Launch on Flap
+      </a>
     </div>
   </nav>
 
-  <section id="about" class="hero">
-    <div class="hero-glow"></div>
-    <div class="hero-icons">
-      <span class="float-icon" style="--delay:0s;--x:15%;--y:20%"><i data-lucide="brain" class="icon-float"></i></span>
-      <span class="float-icon" style="--delay:1s;--x:80%;--y:15%"><i data-lucide="zap" class="icon-float"></i></span>
-      <span class="float-icon" style="--delay:2s;--x:10%;--y:70%"><i data-lucide="shield-check" class="icon-float"></i></span>
-      <span class="float-icon" style="--delay:3s;--x:85%;--y:65%"><i data-lucide="git-merge" class="icon-float"></i></span>
-      <span class="float-icon" style="--delay:1.5s;--x:50%;--y:85%"><i data-lucide="cpu" class="icon-float"></i></span>
-      <span class="float-icon" style="--delay:0.5s;--x:25%;--y:45%"><i data-lucide="network" class="icon-float"></i></span>
-      <span class="float-icon" style="--delay:2.5s;--x:70%;--y:40%"><i data-lucide="sparkles" class="icon-float"></i></span>
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="float-icons">
+        <span class="float-icon" style="--delay:0s;--x:10%;--y:20%"><i data-lucide="cpu" class="icon-float"></i></span>
+        <span class="float-icon" style="--delay:1s;--x:85%;--y:15%"><i data-lucide="zap" class="icon-float"></i></span>
+        <span class="float-icon" style="--delay:1.5s;--x:15%;--y:70%"><i data-lucide="coins" class="icon-float"></i></span>
+        <span class="float-icon" style="--delay:2s;--x:80%;--y:65%"><i data-lucide="repeat" class="icon-float"></i></span>
+        <span class="float-icon" style="--delay:2.5s;--x:70%;--y:40%"><i data-lucide="sparkles" class="icon-float"></i></span>
+      </div>
+      <h1 class="hero-title">Evo<span class="gradient-text">Loop</span></h1>
+      <p class="tagline fade-in">
+        <i data-lucide="repeat" class="icon-inline"></i> AI Agent Learning Loop
+      </p>
+      <p class="desc fade-in">
+        $EVO token launching on Flap.sh - The fair launch platform on BNB Chain. Join the AI Agent revolution!
+      </p>
+      <div class="hero-buttons fade-in">
+        <a href="https://flap.sh/bnb/board" target="_blank" class="btn-primary">
+          <i data-lucide="rocket" class="icon-xs"></i> <span>Launch on Flap</span>
+        </a>
+        <a href="#token" class="btn-secondary">
+          <i data-lucide="coins" class="icon-xs"></i> <span>Token Info</span>
+        </a>
+      </div>
+      <div class="hero-badge fade-in">
+        <span class="pulse-dot"></span> Launching on Flap.sh · BNB Chain
+      </div>
+      <div class="hero-social fade-in">
+        <a href="https://x.com/evoloopdev?s=21" target="_blank" class="social-link">
+          <i data-lucide="twitter" class="icon-xs"></i> Follow @evoloopdev
+        </a>
+      </div>
+      
+      <!-- About Cards -->
+      <div class="about-cards fade-in">
+        <p class="section-desc">Fair launch on Flap.sh - No presale, no team allocation, pure community driven.</p>
+        <div class="cards">
+          <div class="card fade-up">
+            <div class="card-icon-wrap"><i data-lucide="rocket" class="card-lucide"></i></div>
+            <h3>Fair Launch</h3>
+            <p>Launch on Flap.sh bonding curve. Everyone starts equal, no presale, no insider advantage.</p>
+          </div>
+          <div class="card fade-up">
+            <div class="card-icon-wrap"><i data-lucide="users" class="card-lucide"></i></div>
+            <h3>Community Driven</h3>
+            <p>100% community owned. No team allocation, no VC tokens. Built by the community, for the community.</p>
+          </div>
+          <div class="card fade-up">
+            <div class="card-icon-wrap"><i data-lucide="cpu" class="card-lucide"></i></div>
+            <h3>AI Agent Ecosystem</h3>
+            <p>Powering the next generation of AI agents. Learn, evolve, and grow with EvoLoop.</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <h1 class="hero-title">Evo<span class="gradient-text">Loop</span></h1>
-    <p class="tagline fade-in"><i data-lucide="repeat" class="icon-inline"></i> <span data-i18n="tagline">8004 Agent NFT → $TEVO → $EVO. Now live on Four.meme.</span></p>
-    <p class="desc fade-in" data-i18n="hero_desc">A dual-token ecosystem on BSC. Mint your 8004 Agent NFT, earn $TEVO, and trade $EVO at a fixed 1:22,222 ratio. $EVO is live on Four.meme!</p>
-    <div class="hero-buttons fade-in">
-      <a href="#" class="btn-primary" onclick="switchPage('mint'); return false;"><i data-lucide="hexagon" class="icon-xs"></i> <span>Start: Mint 8004 Agent NFT</span></a>
-      <a href="#" class="btn-secondary" onclick="switchPage('mint'); return false;"><i data-lucide="coins" class="icon-xs"></i> <span>Then: Mint $TEVO</span></a>
-    </div>
-    <div class="hero-badge fade-in">
-      <span class="pulse-dot"></span> <span data-i18n="launching_badge">Live on Four.meme · BSC</span>
-    </div>
-    <div class="hero-social fade-in">
-      <a href="https://x.com/evoloopdev?s=21" target="_blank" class="social-link"><i data-lucide="twitter" class="icon-xs"></i> Follow @evoloopdev</a>
-    </div>
+  </section>
+
+  <!-- ========== TOKEN SECTION ========== -->
+  <section id="token" class="section" style="max-width:900px;margin:4rem auto;padding:0 2rem">
+    <h2 class="section-title fade-up">
+      <i data-lucide="coins" class="icon-title"></i> $EVO Token
+    </h2>
+    <p class="section-desc fade-up">Launching on Flap.sh - BNB Chain</p>
     
-    <!-- About Cards -->
-    <div class="about-cards fade-in">
-      <p class="section-desc" data-i18n="about_desc">Three assets, one clear flow. Here's how they connect:</p>
-      <div class="cards">
-        <div class="card fade-up">
-          <div class="card-icon-wrap"><i data-lucide="hexagon" class="card-lucide"></i></div>
-          <h3>① 8004 Agent NFT</h3>
-          <p>Your entry ticket. Free to mint on BSC (only pay gas). Holding it unlocks the ability to mint $TEVO.</p>
-        </div>
-        <div class="card fade-up">
-          <div class="card-icon-wrap"><i data-lucide="coins" class="card-lucide"></i></div>
-          <h3>② $TEVO</h3>
-          <p>Total supply: 10,000. Mint with 0.001 BNB (requires 8004 Agent NFT). 3% DEX tax → buyback & burn. All mint proceeds → LP within 15 min.</p>
-        </div>
-        <div class="card fade-up">
-          <div class="card-icon-wrap"><i data-lucide="zap" class="card-lucide"></i></div>
-          <h3>③ $EVO</h3>
-          <p>Community token on Four.meme. Fair launch, no presale. Swap freely with $TEVO at fixed 1:22,222 ratio.</p>
+    <div class="quad-card fade-up" style="max-width:600px;margin:2rem auto">
+      <div class="token-header">
+        <img src="img/logo.jpg" alt="EVO" class="token-logo">
+        <div class="token-title">
+          <h3>$EVO</h3>
+          <span class="token-chain"><i data-lucide="link" class="icon-xs"></i> BNB Chain · Flap.sh</span>
         </div>
       </div>
+      <div class="token-details">
+        <div class="token-row"><span>Token Name</span><span class="token-val">EvoLoop</span></div>
+        <div class="token-row"><span>Symbol</span><span class="token-val">$EVO</span></div>
+        <div class="token-row"><span>Network</span><span class="token-val">BNB Chain (BSC)</span></div>
+        <div class="token-row"><span>Launch Platform</span><span class="token-val">Flap.sh</span></div>
+        <div class="token-row"><span>Launch Type</span><span class="token-val">Fair Launch (Bonding Curve)</span></div>
+        <div class="token-row"><span>Presale</span><span class="token-val" style="color:var(--green)">None</span></div>
+        <div class="token-row"><span>Team Allocation</span><span class="token-val" style="color:var(--green)">0%</span></div>
+        <div class="token-row"><span>Contract</span><span class="token-val" style="font-size:0.75rem">TBA (After Launch)</span></div>
+      </div>
+      <a href="https://flap.sh/bnb/board" target="_blank" class="btn-primary btn-full" style="margin-top:1.5rem">
+        <i data-lucide="rocket" class="icon-xs"></i> Launch on Flap.sh
+      </a>
+      <p style="text-align:center;margin-top:1rem;font-size:0.85rem;color:var(--text-muted)">
+        Contract address will be available after token creation
+      </p>
     </div>
   </section>
 
-    </div>
-    <!-- ==================== PAGE: MINT ==================== -->
-    <div class="page-section" id="page-mint">
-  <section id="token" class="section" style="max-width:1200px">
-    <h2 class="section-title fade-up"><i data-lucide="coins" class="icon-title"></i> <span data-i18n="token_nft_title">Token & NFT</span></h2>
-    <p class="section-desc fade-up" data-i18n="token_nft_desc">Mint, hold, and swap — all on BSC.</p>
-    
-    <div class="token-quad-grid">
-      <!-- ① 左上: 8004 Agent NFT Mint -->
-      <div class="quad-card fade-up">
-        <h3 class="mint-title"><i data-lucide="hexagon" class="icon-xs"></i> <span data-i18n="mint_8004">Mint 8004 Agent NFT</span></h3>
-        <p class="mint-desc" data-i18n="mint_desc">免费铸造你的 AgentIdentity NFT，解锁 $TEVO 铸造权限和 Four.meme Agent Token 交易权限。</p>
-        <div class="mint-info">
-          <div class="mint-stat"><span class="mint-label">Contract</span><span class="mint-value">0x8004...9a432</span></div>
-          <div class="mint-stat"><span class="mint-label">Network</span><span class="mint-value">BSC</span></div>
-          <div class="mint-stat"><span class="mint-label">Holders</span><span class="mint-value" id="nftHolders">Loading...</span></div>
-          <div class="mint-stat"><span class="mint-label">Price</span><span class="mint-value" style="color:var(--green)">FREE</span></div>
-        </div>
-        <div class="mint-actions">
-          <button id="btnConnect8004" class="btn-primary" onclick="connect8004Wallet()"><i data-lucide="wallet" class="icon-xs"></i> <span data-i18n="connect_wallet">Connect Wallet</span></button>
-          <button id="btnMint8004" class="btn-mint" onclick="mint8004NFT()" disabled><i data-lucide="zap" class="icon-xs"></i> <span data-i18n="mint_nft">Mint NFT</span></button>
-        </div>
-        <p class="mint-status" id="mint8004Status"></p>
-        <a href="https://bscscan.com/token/0x8004a169fb4a3325136eb29fa0ceb6d2e539a432" target="_blank" class="mint-link"><i data-lucide="external-link" class="icon-xs"></i> View on BSCScan</a>
-      </div>
-
-      <!-- ② 右上: $EVO Info -->
-      <div class="quad-card fade-up">
-        <div class="token-header">
-          <img src="img/logo.jpg" alt="EVO" class="token-logo">
-          <div class="token-title">
-            <h3>$EVO</h3>
-            <span class="token-chain"><i data-lucide="link" class="icon-xs"></i> BNB Chain · Four.meme</span>
-          </div>
-        </div>
-        <div class="token-details">
-          <div class="token-row"><span>Total Supply</span><span class="token-val">1,000,000,000</span></div>
-          <div class="token-row"><span>Launch</span><span class="token-val">Fair Launch (Bonding Curve)</span></div>
-          <div class="token-row"><span>Presale</span><span class="token-val" style="color:var(--green)">None</span></div>
-          <div class="token-row"><span>Team Allocation</span><span class="token-val" style="color:var(--green)">None</span></div>
-          <div class="token-row"><span>Deflation</span><span class="token-val" style="color:var(--amber)">Buyback & Burn</span></div>
-          <div class="token-row"><span>Exchange Rate</span><span class="token-val">22,222 $EVO = 1 $TEVO</span></div>
-          <div class="token-row"><span>Contract</span><span class="token-val" style="font-size:0.75rem">0x0df1...4444</span></div>
-        </div>
-        <a href="https://four.meme/zh-TW/token/0x0df11bce6e586090b0043382004204d7a9a14444" target="_blank" class="btn-primary btn-full" style="margin-top:1rem"><i data-lucide="shopping-cart" class="icon-xs"></i> Buy $EVO on Four.meme</a>
-      </div>
-
-      <!-- ③ 左下: $TEVO Mint -->
-      <div class="quad-card fade-up">
-        <div class="mint-badge bnb">0.001 BNB</div>
-        <h3 class="mint-title"><i data-lucide="coins" class="icon-xs"></i> Mint $TEVO</h3>
-        <p class="mint-desc">Step 2: Requires 8004 Agent NFT. 3% DEX tax, all fees → buyback & burn.</p>
-        <ul class="mint-conditions">
-          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Hold <strong>8004 Agent NFT</strong></li>
-          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Cost: <strong>0.001 BNB</strong> per mint</li>
-          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Cooldown: <strong>60 seconds</strong></li>
-          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> Cap: <strong>7,000 $TEVO</strong> (70%)</li>
-          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> DEX Tax: <strong>3%</strong> buy & sell</li>
-          <li><i data-lucide="check-circle" class="icon-xs" style="color:var(--green)"></i> LP: <strong>100% mint proceeds → liquidity</strong></li>
-        </ul>
-        <div class="mint-info">
-          <div class="mint-stat"><span class="mint-label">Total Supply</span><span class="mint-value">10,000 $TEVO</span></div>
-          <div class="mint-stat"><span class="mint-label">Minted</span><span class="mint-value" id="tevoMinted">Loading...</span></div>
-        </div>
-        <div class="progress-bar" style="margin:1rem 0 0.5rem">
-          <div class="progress-fill" id="tevoProgress" style="width:0%"></div>
-        </div>
-        <p class="progress-text" id="tevoProgressText" style="text-align:center;margin-bottom:1rem">0 / 7,000</p>
-        <div class="mint-actions">
-          <button id="btnMintTevo" class="btn-mint" onclick="mintTevo()">
-            <i data-lucide="zap" class="icon-xs"></i> Mint 1 $TEVO (0.001 BNB)
-          </button>
-        </div>
-        <p class="mint-status" id="mintTevoStatus"></p>
-        <a href="https://bscscan.com/address/0xC40174FC5d5f3ab6899247909d777831DE7f85A1" target="_blank" class="mint-link"><i data-lucide="external-link" class="icon-xs"></i> View on BSCScan</a>
-      </div>
-
-      <!-- ④ 右下: Burn / Exchange -->
-      <div class="quad-card fade-up">
-        <h3 class="mint-title"><i data-lucide="flame" class="icon-xs"></i> $TEVO & $EVO Burn</h3>
-        <p class="mint-desc">Burn to swap at fixed 1:22,222 ratio. 3% DEX tax revenue also used for buyback & burn to stabilize prices.</p>
-
-        <div class="exchange-tabs">
-          <button class="exchange-tab active" onclick="switchExchangeTab('evoToTevo', this)">Burn $EVO → Mint $TEVO</button>
-          <button class="exchange-tab" onclick="switchExchangeTab('tevoToEvo', this)">Burn $TEVO → Get $EVO</button>
-        </div>
-
-        <div class="exchange-panel active" id="panel-evoToTevo">
-          <div class="exchange-input-group">
-            <label>You Pay</label>
-            <div class="exchange-input-row">
-              <input type="number" id="evoInputAmount" placeholder="0" oninput="calcExchange('evoToTevo')">
-              <span class="exchange-token">$EVO</span>
-            </div>
-          </div>
-          <div class="exchange-arrow"><i data-lucide="arrow-down" class="icon-xs"></i></div>
-          <div class="exchange-input-group">
-            <label>You Receive</label>
-            <div class="exchange-input-row">
-              <input type="text" id="tevoOutputAmount" placeholder="0" readonly>
-              <span class="exchange-token">$TEVO</span>
-            </div>
-          </div>
-          <div class="exchange-detail">
-            <span>22,222 $EVO = 1 $TEVO</span>
-            <span>Reserve: <span id="evoReserve">--</span></span>
-          </div>
-          <button class="btn-mint" id="btnExchangeEtoT" onclick="doExchange('evoToTevo')" style="margin-top:0.8rem;width:100%">
-            <i data-lucide="flame" class="icon-xs"></i> Burn & Mint
-          </button>
-        </div>
-
-        <div class="exchange-panel" id="panel-tevoToEvo">
-          <div class="exchange-input-group">
-            <label>You Pay</label>
-            <div class="exchange-input-row">
-              <input type="number" id="tevoInputAmount" placeholder="0" oninput="calcExchange('tevoToEvo')">
-              <span class="exchange-token">$TEVO</span>
-            </div>
-          </div>
-          <div class="exchange-arrow"><i data-lucide="arrow-down" class="icon-xs"></i></div>
-          <div class="exchange-input-group">
-            <label>You Receive</label>
-            <div class="exchange-input-row">
-              <input type="text" id="evoOutputAmount" placeholder="0" readonly>
-              <span class="exchange-token">$EVO</span>
-            </div>
-          </div>
-          <div class="exchange-detail">
-            <span>1 $TEVO = 22,222 $EVO</span>
-            <span>Reserve: <span id="evoReserve2">--</span></span>
-          </div>
-          <button class="btn-mint" id="btnExchangeTtoE" onclick="doExchange('tevoToEvo')" style="margin-top:0.8rem;width:100%">
-            <i data-lucide="flame" class="icon-xs"></i> Burn & Redeem
-          </button>
-        </div>
-
-        <p class="mint-status" id="exchangeStatus"></p>
-        <p class="exchange-note"><i data-lucide="info" class="icon-xs"></i> $EVO is live! Exchange will activate after bonding curve completes (18 BNB raised)</p>
-      </div>
-    </div>
-
-    <!-- $TEVO Tokenomics Info -->
-    <div class="tevo-economics fade-up">
-      <h3 class="econ-title"><i data-lucide="shield-check" class="icon-xs"></i> $TEVO Tokenomics</h3>
-      <div class="econ-grid">
-        <div class="econ-item">
-          <div class="econ-icon">💧</div>
-          <div class="econ-text">
-            <h4>100% Liquidity</h4>
-            <p>All minting proceeds (BNB) go directly to adding liquidity. LP added within <strong>15 minutes</strong> after mint completes.</p>
-          </div>
-        </div>
-        <div class="econ-item">
-          <div class="econ-icon">💸</div>
-          <div class="econ-text">
-            <h4>3% DEX Tax</h4>
-            <p>Every $TEVO buy/sell on DEX incurs a <strong>3% fee</strong>. No hidden taxes, fully transparent on-chain.</p>
-          </div>
-        </div>
-        <div class="econ-item">
-          <div class="econ-icon">🔥</div>
-          <div class="econ-text">
-            <h4>Buyback & Burn</h4>
-            <p>All trading fees are used to <strong>buy back and burn $TEVO & $EVO</strong>, stabilizing the price ratio between the two tokens.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Bottom Stats Bar -->
-    <div class="token-stats-bar fade-up">
-      <div class="ts-item"><span class="ts-val">10,000</span><span class="ts-label">$TEVO Supply</span></div>
-      <div class="ts-item"><span class="ts-val">7,000</span><span class="ts-label">Public Mint</span></div>
-      <div class="ts-item"><span class="ts-val">3%</span><span class="ts-label">DEX Tax</span></div>
-      <div class="ts-item"><span class="ts-val">1:22,222</span><span class="ts-label">Exchange Rate</span></div>
-    </div>
-  </section>
-
-    </div>
-    <!-- ==================== PAGE: ROADMAP ==================== -->
-    <div class="page-section" id="page-roadmap">
-  <section id="how" class="section">
-    <h2 class="section-title fade-up"><i data-lucide="list-ordered" class="icon-title"></i> How to Participate</h2>
-    <div class="steps">
-      <div class="step fade-up">
-        <div class="step-num"><i data-lucide="hexagon" class="icon-step"></i></div>
-        <div class="step-content">
-          <h3>Step 1: Mint 8004 Agent NFT</h3>
-          <p>Free mint on BSC (only pay gas). This is your entry ticket — you need it to mint $TEVO.</p>
-        </div>
-      </div>
-      <div class="step-line"></div>
-      <div class="step fade-up">
-        <div class="step-num"><i data-lucide="coins" class="icon-step"></i></div>
-        <div class="step-content">
-          <h3>Step 2: Mint $TEVO</h3>
-          <p>Pay 0.001 BNB per $TEVO. 1 mint per 60 seconds. Total 7,000 available for public mint.</p>
-        </div>
-      </div>
-      <div class="step-line"></div>
-      <div class="step fade-up">
-        <div class="step-num"><i data-lucide="arrow-left-right" class="icon-step"></i></div>
-        <div class="step-content">
-          <h3>Step 3: Swap $TEVO ↔ $EVO</h3>
-          <p>After $EVO launches on Four.meme, swap freely at 1 $TEVO = 22,222 $EVO. 3% DEX tax on $TEVO trades funds buyback & burn of both tokens.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Core Capabilities -->
-  <!-- Roadmap & FAQ -->
-  <section id="roadmap" class="section">
-    <h2 class="section-title fade-up"><i data-lucide="map" class="icon-title"></i> Roadmap & FAQ</h2>
-    <p class="section-desc fade-up">Our journey and answers to common questions.</p>
-    
-    <div class="roadmap-faq-grid">
-      <!-- Roadmap -->
-      <div class="roadmap-container fade-up">
-        <h3 class="subsection-title"><i data-lucide="route" class="icon-xs"></i> Roadmap</h3>
-        <div class="roadmap-line"></div>
-        <div class="roadmap-item">
-          <div class="roadmap-marker active"></div>
-          <div class="roadmap-content">
-            <span class="roadmap-phase">Q1 2026</span>
-            <h4>Foundation</h4>
-            <ul>
-              <li><i data-lucide="check" class="icon-xs"></i> Launch EvoLoop website</li>
-              <li><i data-lucide="check" class="icon-xs"></i> Build community on Twitter</li>
-              <li><i data-lucide="check" class="icon-xs"></i> 8004 Agent NFT mint integration</li>
-              <li><i data-lucide="check" class="icon-xs"></i> $TEVO token deployment</li>
-              <li><i data-lucide="check" class="icon-xs"></i> $TEVO ↔ $EVO exchange contract</li>
-              <li><i data-lucide="check" class="icon-xs"></i> $EVO token launched on Four.meme</li>
-            </ul>
-          </div>
-        </div>
-        <div class="roadmap-item">
-          <div class="roadmap-marker"></div>
-          <div class="roadmap-content">
-            <span class="roadmap-phase">Q2 2026</span>
-            <h4>Growth</h4>
-            <ul>
-              <li><i data-lucide="circle" class="icon-xs"></i> Agent Learning Chat live</li>
-              <li><i data-lucide="circle" class="icon-xs"></i> Skill marketplace</li>
-              <li><i data-lucide="circle" class="icon-xs"></i> 1,000+ members</li>
-            </ul>
-          </div>
-        </div>
-        <div class="roadmap-item">
-          <div class="roadmap-marker"></div>
-          <div class="roadmap-content">
-            <span class="roadmap-phase">Q3 2026</span>
-            <h4>Expansion</h4>
-            <ul>
-              <li><i data-lucide="circle" class="icon-xs"></i> Governance DAO</li>
-              <li><i data-lucide="circle" class="icon-xs"></i> Cross-chain bridge</li>
-              <li><i data-lucide="circle" class="icon-xs"></i> Agent reputation</li>
-            </ul>
-          </div>
-        </div>
-        <div class="roadmap-item">
-          <div class="roadmap-marker"></div>
-          <div class="roadmap-content">
-            <span class="roadmap-phase">Q4 2026</span>
-            <h4>Evolution</h4>
-            <ul>
-              <li><i data-lucide="circle" class="icon-xs"></i> Decentralized storage</li>
-              <li><i data-lucide="circle" class="icon-xs"></i> Agent commerce</li>
-              <li><i data-lucide="circle" class="icon-xs"></i> Mobile app</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <!-- FAQ -->
-      <div class="faq-container fade-up">
-        <h3 class="subsection-title"><i data-lucide="help-circle" class="icon-xs"></i> FAQ</h3>
-        <div class="faq-list">
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span>What is EvoLoop?</span>
-              <span class="faq-arrow">▾</span>
-            </div>
-            <div class="faq-a">EvoLoop is a dual-token ecosystem on BSC built around OpenClaw AI agents. It consists of 8004 Agent NFT (entry ticket), $TEVO (limited supply token), and $EVO (community token on Four.meme).</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span>What is the 8004 Agent NFT?</span>
-              <span class="faq-arrow">▾</span>
-            </div>
-            <div class="faq-a">The AgentIdentity NFT — your entry ticket. Free to mint on BSC (only pay gas). You must hold at least 1 to mint $TEVO.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span>How do I mint $TEVO?</span>
-              <span class="faq-arrow">▾</span>
-            </div>
-            <div class="faq-a">Hold a 8004 Agent NFT, then pay 0.001 BNB to mint 1 $TEVO. There's a 60-second cooldown between mints, and only 7,000 are available for public mint.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span>How does the $TEVO ↔ $EVO exchange work?</span>
-              <span class="faq-arrow">▾</span>
-            </div>
-            <div class="faq-a">The Tevo smart contract lets you swap at a fixed ratio of 1 $TEVO = 22,222 $EVO. Deposit EVO to mint TEVO, or burn TEVO to withdraw EVO. $TEVO has a 3% DEX buy/sell tax — all fees go to buying back and burning both $TEVO and $EVO, keeping the price ratio stable.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span>When does $EVO launch?</span>
-              <span class="faq-arrow">▾</span>
-            </div>
-            <div class="faq-a">$EVO is now live on Four.meme! Contract: 0x0df11bce6e586090b0043382004204d7a9a14444. Fair launch via bonding curve, no presale. <a href="https://four.meme/zh-TW/token/0x0df11bce6e586090b0043382004204d7a9a14444" target="_blank" style="color:var(--cyan)">Trade now →</a></div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span>Where does the minting money go?</span>
-              <span class="faq-arrow">▾</span>
-            </div>
-            <div class="faq-a">100% of BNB collected from $TEVO minting goes directly to adding liquidity on DEX. LP is added within 15 minutes after mint completes. No team wallet, no diversion.</div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q" onclick="toggleFaq(this)">
-              <span>What is the 3% DEX tax?</span>
-              <span class="faq-arrow">▾</span>
-            </div>
-            <div class="faq-a">Every $TEVO buy and sell on DEX incurs a 3% fee. All collected fees are used to buy back and burn both $TEVO and $EVO, creating continuous deflation and stabilizing the price relationship between the two tokens.</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-
-    </div>
-    <!-- ==================== PAGE: OPENCLAW ==================== -->
-    <div class="page-section" id="page-openclaw">
-
-  <!-- ① Quick Installer -->
-  <section id="installer" class="section" style="max-width:1100px">
-    <h2 class="section-title fade-up"><i data-lucide="download" class="icon-title"></i> Quick Install</h2>
-    <p class="section-desc fade-up">3 steps to launch your own AI agent. Pick your setup and go.</p>
-
-    <div class="installer-box fade-up">
-      <div class="installer-steps">
-        <!-- Step 1: Platform -->
-        <div class="installer-step active" id="instStep1">
-          <div class="inst-step-header">
-            <span class="inst-step-num">1</span>
-            <span class="inst-step-title">Choose Platform</span>
-          </div>
-          <div class="inst-options" id="instPlatform">
-            <button class="inst-option active" data-value="mac" onclick="selectInstOption('platform', this)"><span>🍎</span> macOS</button>
-            <button class="inst-option" data-value="linux" onclick="selectInstOption('platform', this)"><span>🐧</span> Linux</button>
-            <button class="inst-option" data-value="win" onclick="selectInstOption('platform', this)"><span>🪟</span> Windows</button>
-          </div>
-        </div>
-
-        <!-- Step 2: Model -->
-        <div class="installer-step" id="instStep2">
-          <div class="inst-step-header">
-            <span class="inst-step-num">2</span>
-            <span class="inst-step-title">Choose AI Model</span>
-          </div>
-          <div class="inst-options" id="instModel">
-            <button class="inst-option active" data-value="claude" onclick="selectInstOption('model', this)"><span>🟣</span> Claude (Anthropic)</button>
-            <button class="inst-option" data-value="gpt" onclick="selectInstOption('model', this)"><span>🟢</span> GPT (OpenAI)</button>
-            <button class="inst-option" data-value="local" onclick="selectInstOption('model', this)"><span>🏠</span> Local (Ollama)</button>
-          </div>
-        </div>
-
-        <!-- Step 3: Channel -->
-        <div class="installer-step" id="instStep3">
-          <div class="inst-step-header">
-            <span class="inst-step-num">3</span>
-            <span class="inst-step-title">Choose Chat Channel</span>
-          </div>
-          <div class="inst-options" id="instChannel">
-            <button class="inst-option active" data-value="telegram" onclick="selectInstOption('channel', this)"><span>📱</span> Telegram</button>
-            <button class="inst-option" data-value="discord" onclick="selectInstOption('channel', this)"><span>🎮</span> Discord</button>
-            <button class="inst-option" data-value="slack" onclick="selectInstOption('channel', this)"><span>💼</span> Slack</button>
-            <button class="inst-option" data-value="whatsapp" onclick="selectInstOption('channel', this)"><span>💬</span> WhatsApp</button>
-            <button class="inst-option" data-value="terminal" onclick="selectInstOption('channel', this)"><span>⌨️</span> Terminal Only</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Generated Commands -->
-      <div class="inst-result">
-        <div class="inst-result-header">
-          <span><i data-lucide="terminal" class="icon-xs"></i> Your Install Commands</span>
-          <button class="inst-copy-btn" onclick="copyInstallCmd()"><i data-lucide="copy" class="icon-xs"></i> Copy</button>
-        </div>
-        <pre class="inst-code" id="instCode"></pre>
-      </div>
-    </div>
-  </section>
-
-  <!-- ② Live Terminal Demo -->
-  <section id="terminal-demo" class="section" style="max-width:1100px">
-    <h2 class="section-title fade-up"><i data-lucide="terminal" class="icon-title"></i> See It In Action</h2>
-    <p class="section-desc fade-up">Watch OpenClaw agents work in real time.</p>
-
-    <div class="term-container fade-up">
-      <div class="term-header">
-        <div class="term-dots">
-          <span class="term-dot red"></span>
-          <span class="term-dot yellow"></span>
-          <span class="term-dot green"></span>
-        </div>
-        <span class="term-title">openclaw — agent terminal</span>
-        <div class="term-controls">
-          <button class="term-btn" id="termReplay" onclick="replayTerminal()"><i data-lucide="refresh-cw" class="icon-xs"></i></button>
-        </div>
-      </div>
-      <div class="term-body" id="termBody">
-        <div class="term-line" id="termOutput"></div>
-        <div class="term-cursor">▊</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ③ Skill Browser -->
-  <section id="skills" class="section" style="max-width:1100px">
-    <h2 class="section-title fade-up"><i data-lucide="puzzle" class="icon-title"></i> Skill Browser</h2>
-    <p class="section-desc fade-up">Discover and install skills from ClawHub. Click to copy install command.</p>
-
-    <div class="skill-browser fade-up">
-      <div class="skill-search-bar">
-        <i data-lucide="search" class="icon-xs"></i>
-        <input type="text" id="skillSearch" placeholder="Search skills..." oninput="filterSkills()">
-        <div class="skill-filter-tags">
-          <button class="skill-tag-btn active" data-tag="all" onclick="filterByTag('all', this)">All</button>
-          <button class="skill-tag-btn" data-tag="official" onclick="filterByTag('official', this)">✅ Official</button>
-          <button class="skill-tag-btn" data-tag="search" onclick="filterByTag('search', this)">🔍 Search</button>
-          <button class="skill-tag-btn" data-tag="automation" onclick="filterByTag('automation', this)">⚡ Automation</button>
-          <button class="skill-tag-btn" data-tag="web3" onclick="filterByTag('web3', this)">🔗 Web3</button>
-          <button class="skill-tag-btn" data-tag="creative" onclick="filterByTag('creative', this)">🎨 Creative</button>
-        </div>
-      </div>
-
-      <div class="skill-list" id="skillList">
-        <!-- Populated by JS -->
-      </div>
-
-      <div class="skill-browser-footer">
-        <a href="https://clawhub.com" target="_blank" class="btn-secondary"><i data-lucide="external-link" class="icon-xs"></i> Browse All on ClawHub</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Supported Platforms (compact) -->
-  <section id="platforms" class="section" style="max-width:1100px">
-    <h2 class="section-title fade-up"><i data-lucide="message-circle" class="icon-title"></i> Supported Platforms</h2>
-    <div class="platform-grid compact fade-up">
-      <div class="platform-pill"><span>📱</span> Telegram</div>
-      <div class="platform-pill"><span>🎮</span> Discord</div>
-      <div class="platform-pill"><span>💬</span> WhatsApp</div>
-      <div class="platform-pill"><span>💼</span> Slack</div>
-      <div class="platform-pill"><span>🐦</span> Feishu</div>
-      <div class="platform-pill"><span>🔒</span> Signal</div>
-      <div class="platform-pill"><span>🍎</span> iMessage</div>
-      <div class="platform-pill"><span>📌</span> Mattermost</div>
-      <div class="platform-pill soon"><span>🔔</span> DingTalk</div>
-      <div class="platform-pill soon"><span>🏢</span> WeCom</div>
-    </div>
-  </section>
-
-    </div>
-  </div>
-  <!-- End main-wrapper -->
-
-  <footer>
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
     <div class="footer-content">
-      <div class="footer-brand"><img src="img/logo.jpg" alt="EvoLoop" class="footer-logo"> EvoLoop</div>
-      <div class="footer-links">
-        <a href="https://x.com/evoloopdev?s=21" target="_blank"><i data-lucide="twitter" class="icon-xs"></i> Twitter</a>
+      <div class="footer-left">
+        <img src="img/logo.jpg" alt="EvoLoop" class="footer-logo">
+        <span>EvoLoop © 2026</span>
       </div>
-      <p class="footer-copy">© 2026 EvoLoop. Built for the OpenClaw ecosystem.</p>
+      <div class="footer-right">
+        <a href="https://x.com/evoloopdev?s=21" target="_blank" class="footer-link">
+          <i data-lucide="twitter" class="icon-xs"></i> Twitter
+        </a>
+        <a href="https://flap.sh/bnb/board" target="_blank" class="footer-link">
+          <i data-lucide="rocket" class="icon-xs"></i> Flap.sh
+        </a>
+      </div>
     </div>
   </footer>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/6.13.4/ethers.umd.min.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/openclaw-features.js"></script>
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+    
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+    
+    // Fade-in animations on scroll
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+        }
+      });
+    }, observerOptions);
+    
+    document.querySelectorAll('.fade-up, .fade-in').forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(20px)';
+      el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
